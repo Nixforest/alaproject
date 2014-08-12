@@ -12,7 +12,7 @@
 *  --------------------------------------------------------
 *  12-Aug-2014	NguyenPT	Init coding
 */
-package com.nixforest.alaproject;
+package com.nixforest.alaproject.util;
 
 /**
  * Global variables.
@@ -77,4 +77,10 @@ public final class GlobalVariable {
 	 * Menu Log in title.
 	 */
 	//public static final String MENU_TITLE_LOGIN		= "Đăng nhập";
+	/**
+	 * String array to remove sign in Vietnamese.
+	 */
+	 public static final String[] VIETNAMESE_SIGNS = new String[]{"aAeEoOuUiIdDyY", "áàạảãâấầậẩẫăắằặẳẵ", "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+         "éèẹẻẽêếềệểễ", "ÉÈẸẺẼÊẾỀỆỂỄ", "óòọỏõôốồộổỗơớờợởỡ", "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ", "úùụủũưứừựửữ", "ÚÙỤỦŨƯỨỪỰỬỮ",
+         "íìịỉĩ", "ÍÌỊỈĨ", "đ", "Đ", "ýỳỵỷỹ", "ÝỲỴỶỸ"};
 }
