@@ -1,5 +1,7 @@
 package com.alavui;
 
+import com.alavui.ui.R;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
