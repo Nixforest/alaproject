@@ -19,5 +19,7 @@
     <string name="navigation_signin">Đăng nhập</string>
     <string name="navigation_setting">Tùy chọn</string>
     <string name="navigation_more">Ứng dụng hay</string>
-
+    <string name="app_id">518406641623410</string>
+    <string name="title_login">Login To FaceBook</string>
+	<string name="settings">Settings</string>
 </resources>
