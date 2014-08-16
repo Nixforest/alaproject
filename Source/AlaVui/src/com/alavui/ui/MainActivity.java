@@ -76,6 +76,12 @@ public class MainActivity extends ActionBarActivity {//1
 					Toast.makeText(MainActivity.this, "Ban da tap chon 1",
 							Toast.LENGTH_LONG).show();
 					break;
+				case 6:
+					{
+						Intent intent = new Intent(com.alavui.ui.MainActivity.this,com.alavui.ui.LoginActivity.class);
+						com.alavui.ui.MainActivity.this.startActivity(intent);
+					}
+					break;	
 				default:
 					break;
 				}
