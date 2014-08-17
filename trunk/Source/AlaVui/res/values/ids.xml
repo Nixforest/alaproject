@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="header" type="id"/>  
+    <item name="icon_notification" type="id"/>  
+    <item name="tw_notification" type="id"/> 
+    <item name="et_tieudecuaanh" type="id"/> 
+    <item name="et_nguoncuaanh" type="id"/>
+    <item name="cb_anhtulam" type="id"/> 
+</resources>
