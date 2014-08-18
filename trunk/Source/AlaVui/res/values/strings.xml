@@ -22,4 +22,12 @@
     <string name="app_id">518406641623410</string>
     <string name="title_login">Login To FaceBook</string>
 	<string name="settings">Settings</string>
+	<string name="da">ĐĂNG ẢNH</string>
+     <string name="dd">ĐĂNG</string>
+	<string name="tv_thongbao"> Chào mừng bạn đến với <a href="http://haivl.com/">haivl.com</a>. 
+	    						Hãy đặt mật khẩu cho tài khoản của bạn tại đây và chọn cho mình một lên đăng nhập
+	    						ưng ý tại đây.</string>
+	<string name="tv_time">Hôm qua</string>
+	<string name="name_acount">Rồng Con</string>
+	<string name="title_anhdadang">ẢNH ĐÃ ĐĂNG</string>
 </resources>
