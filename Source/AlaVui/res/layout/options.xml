@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/include1"
+        layout="@layout/nofitication_bar" >
+    </include>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/include1"
+        android:background="#ffffffff" >
+
+        <ImageView
+            android:id="@+id/iv_ic_notifycion"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/notifyicon" />
+
+        <TextView
+            android:id="@+id/tv_ads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_ic_notifycion"
+            android:text="@string/ads"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_rate_in_CHPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/RelativeLayout1"
+        android:layout_marginTop="1dp"
+        android:background="#ffffffff"
+        android:text="@string/bt_rate" />
+
+    <AbsoluteLayout
+        android:id="@+id/absoluteLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btn_rate_in_CHPlay"
+        android:layout_marginTop="1dp"
+        android:background="#ffffffff" >
+
+        <TextView
+            android:id="@+id/tv_title_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="4dp"
+            android:layout_y="4dp"
+            android:text="@string/tv_title_option"
+            android:textStyle="bold" />
+    </AbsoluteLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/absoluteLayout1"
+        android:layout_marginTop="5dp"
+        android:background="#ffffffff" >
+
+        <ListView
+            android:id="@+id/lv_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" >
+        </ListView>
+
+    </RelativeLayout>
+
+</RelativeLayout>
