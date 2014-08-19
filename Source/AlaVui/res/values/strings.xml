@@ -29,5 +29,28 @@
 	    						ưng ý tại đây.</string>
 	<string name="tv_time">Hôm qua</string>
 	<string name="name_acount">Rồng Con</string>
-	<string name="title_anhdadang">ẢNH ĐÃ ĐĂNG</string>
+	<string name="title_picture_upload">ẢNH ĐÃ ĐĂNG</string>
+	<string name="ads">Haivl.com là nơi chia sẻ những bức ảnh, 
+	    			những câu chuyện hài hước độc đáo và ý 
+	    			nghĩa của Việt Nam và thế giới. Rất đơn giản,
+	    			chỉ cần vào haivl.com và cười.</string>
+	<string name="bt_rate">Đánh giá haivl.com trên Play Store (CH Play)</string>
+	<string name="tv_title_option">TÙY CHỌN</string>
+	<string name="date_join">"Tham gia từ: "</string>
+	<string name="rate">"Thứ hạng: "</string>
+	<string name="number_picture_upload">0</string>
+	<string name="number_picture_like">0</string>
+	<string name="number_picture_comment">0</string>
+	<string name="number_picture_view">0</string>
+	<string name="profile_page_date_join">0</string>
+	<string name="rofile_page_number_rate">0</string>
+	<string name="rule1">Bạn được đăng      ảnh/ngày</string>
+	<string name="rule2">Số ảnh bạn đã đăng hôm nay: </string>
+	<string name="number_image_rule">0</string>
+	<string name="number_image_post">0</string>
+	<string name="title_of_image">Tiêu đề của ảnh *</string>
+	<string name="self_image">Ảnh tự làm</string>
+	<string name="Source_of_image">Nguồn của ảnh!</string>
+	<string name="chosse_image">Chọn ảnh (Không quá 3MB)</string>
+	<string name="upload_image">Đăng ảnh</string> 
 </resources>
