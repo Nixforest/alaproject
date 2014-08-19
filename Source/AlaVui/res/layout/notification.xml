@@ -9,7 +9,7 @@
     </include>
 
     <TextView
-        android:id="@+id/thong_bao"
+        android:id="@+id/tv_notification_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -21,11 +21,11 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/tv_notification_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/thong_bao"
+        android:layout_below="@+id/tv_notification_notification"
         android:layout_marginLeft="10dp"
         android:textSize="12sp"
         android:text="@string/tv_time" />

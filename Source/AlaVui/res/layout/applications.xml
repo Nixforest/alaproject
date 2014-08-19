@@ -9,7 +9,7 @@
     </include>
 
     <ListView
-        android:id="@+id/ung_dung_hay"
+        android:id="@+id/lv_application"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/include1" >
