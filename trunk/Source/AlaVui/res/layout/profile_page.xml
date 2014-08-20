@@ -9,7 +9,7 @@
     </include>
 
     <ImageView
-        android:id="@+id/bi_pictureprofile"
+        android:id="@id/bi_pictureprofile"
         android:layout_width="100dip"
         android:layout_height="100dip"
         android:layout_alignParentLeft="true"
@@ -53,38 +53,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/bi_pictureprofile" >
 
-<!--         <ImageButton -->
-<!--             android:id="@+id/ib_comment" -->
-<!--             android:layout_width="33dip" -->
-<!--             android:layout_height="28dip" -->
-<!--             android:layout_x="200dp" -->
-<!--             android:layout_y="20dp" -->
-<!--             android:src="@drawable/picture3" /> -->
-
-<!--         <ImageButton -->
-<!--             android:id="@+id/ib_like" -->
-<!--             android:layout_width="33dip" -->
-<!--             android:layout_height="30dip" -->
-<!--             android:layout_x="130dp" -->
-<!--             android:layout_y="20dp" -->
-<!--             android:src="@drawable/picture2" /> -->
-
-<!--         <ImageButton -->
-<!--             android:id="@+id/ib_picture_upload" -->
-<!--             android:layout_width="33dip" -->
-<!--             android:layout_height="28dip" -->
-<!--             android:layout_x="60dp" -->
-<!--             android:layout_y="20dp" -->
-<!--             android:src="@drawable/picture1" /> -->
-
-<!--         <ImageButton -->
-<!--             android:id="@+id/ib_view" -->
-<!--             android:layout_width="33dip" -->
-<!--             android:layout_height="26dip" -->
-<!--             android:layout_x="270dp" -->
-<!--             android:layout_y="20dp" -->
-<!--             android:src="@drawable/picture4" /> -->
-
         <TextView
             android:id="@+id/tv_munber_pictute_upload"
             android:layout_width="wrap_content"
@@ -98,7 +66,7 @@
             android:id="@+id/tv_number_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="282dp"
+            android:layout_x="270dp"
             android:layout_y="47dp"
             android:text="@string/number_picture_view"
             android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -107,7 +75,7 @@
             android:id="@+id/tv_number_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="143dp"
+            android:layout_x="140dp"
             android:layout_y="50dp"
             android:text="@string/number_picture_like"
             android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -116,10 +84,43 @@
             android:id="@+id/tv_number_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="213dp"
+            android:layout_x="205dp"
             android:layout_y="49dp"
             android:text="@string/number_picture_comment"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="70dp"
+            android:layout_y="25dp"
+            android:src="@drawable/profile_photo" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="135dp"
+            android:layout_y="25dp"
+            android:src="@drawable/profile_like" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="200dp"
+            android:layout_y="25dp"
+            android:src="@drawable/profile_cm" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="265dp"
+            android:layout_y="25dp"
+            android:src="@drawable/profile_view" />
+
     </AbsoluteLayout>
 
     
