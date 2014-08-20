@@ -24,7 +24,7 @@ public final class Utility {
 	/**
 	 * Constructor.
 	 */
-	private Utility() {
+	protected Utility() {
 	}
 	/**
      * Method remove sign in Vietnamese string.
