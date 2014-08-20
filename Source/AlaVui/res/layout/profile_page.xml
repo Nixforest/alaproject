@@ -9,7 +9,7 @@
     </include>
 
     <ImageView
-        android:id="@id/bi_pictureprofile"
+        android:id="@+id/bi_pictureprofile"
         android:layout_width="100dip"
         android:layout_height="100dip"
         android:layout_alignParentLeft="true"
@@ -53,37 +53,37 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/bi_pictureprofile" >
 
-        <ImageButton
-            android:id="@+id/ib_comment"
-            android:layout_width="33dip"
-            android:layout_height="28dip"
-            android:layout_x="200dp"
-            android:layout_y="20dp"
-            android:src="@drawable/picture3" />
+<!--         <ImageButton -->
+<!--             android:id="@+id/ib_comment" -->
+<!--             android:layout_width="33dip" -->
+<!--             android:layout_height="28dip" -->
+<!--             android:layout_x="200dp" -->
+<!--             android:layout_y="20dp" -->
+<!--             android:src="@drawable/picture3" /> -->
 
-        <ImageButton
-            android:id="@+id/ib_like"
-            android:layout_width="33dip"
-            android:layout_height="30dip"
-            android:layout_x="130dp"
-            android:layout_y="20dp"
-            android:src="@drawable/picture2" />
+<!--         <ImageButton -->
+<!--             android:id="@+id/ib_like" -->
+<!--             android:layout_width="33dip" -->
+<!--             android:layout_height="30dip" -->
+<!--             android:layout_x="130dp" -->
+<!--             android:layout_y="20dp" -->
+<!--             android:src="@drawable/picture2" /> -->
 
-        <ImageButton
-            android:id="@+id/ib_picture_upload"
-            android:layout_width="33dip"
-            android:layout_height="28dip"
-            android:layout_x="60dp"
-            android:layout_y="20dp"
-            android:src="@drawable/picture1" />
+<!--         <ImageButton -->
+<!--             android:id="@+id/ib_picture_upload" -->
+<!--             android:layout_width="33dip" -->
+<!--             android:layout_height="28dip" -->
+<!--             android:layout_x="60dp" -->
+<!--             android:layout_y="20dp" -->
+<!--             android:src="@drawable/picture1" /> -->
 
-        <ImageButton
-            android:id="@+id/ib_view"
-            android:layout_width="33dip"
-            android:layout_height="26dip"
-            android:layout_x="270dp"
-            android:layout_y="20dp"
-            android:src="@drawable/picture4" />
+<!--         <ImageButton -->
+<!--             android:id="@+id/ib_view" -->
+<!--             android:layout_width="33dip" -->
+<!--             android:layout_height="26dip" -->
+<!--             android:layout_x="270dp" -->
+<!--             android:layout_y="20dp" -->
+<!--             android:src="@drawable/picture4" /> -->
 
         <TextView
             android:id="@+id/tv_munber_pictute_upload"
