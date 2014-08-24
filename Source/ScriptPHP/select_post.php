@@ -14,19 +14,22 @@
 
 	//Get user from user id
 	$result = mysql_query("SELECT PID, USERID, story, pic, youtube_key, url,"
-                . "time_added, date_added FROM posts WHERE PID = $postId");
+                . "time_added, date_added, favclicks, unfavclicks, view FROM posts WHERE PID = $postId");
 	if(!empty($result)){
             if(mysql_num_rows($result) > 0){
                 $result = mysql_fetch_array($result);
 		$post = array();
-                $post["PID"] = $result["PID"];
-		$post["USERID"] = $result["USERID"];
-		$post["story"] = $result["story"];
-		$post["pic"] = $result["pic"];
-		$post["youtube_key"] = $result["youtube_key"];
-                $post["url"] = $result["url"];
-                $post["time_added"] = $result["time_added"];
-                $post["date_added"] = $result["date_added"];
+                $post["PID"]            = $result["PID"];
+		$post["USERID"]         = $result["USERID"];
+		$post["story"]          = $result["story"];
+		$post["pic"]            = $result["pic"];
+		$post["youtube_key"]    = $result["youtube_key"];
+                $post["url"]            = $result["url"];
+                $post["time_added"]     = $result["time_added"];
+                $post["date_added"]     = $result["date_added"];
+                $post["favclicks"]      = $result["favclicks"];
+                $post["unfavclicks"]    = $result["unfavclicks"];
+                $post["view"]           = $result["view"];
 		
 		//Successful
 		$response["success"] = 1;	
