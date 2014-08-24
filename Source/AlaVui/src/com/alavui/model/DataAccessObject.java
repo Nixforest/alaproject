@@ -207,6 +207,26 @@ public enum DataAccessObject {
 		return postUnFav;
 	}
 	/**
+	 * Get list of Referral objects from database.
+	 * @param numberOfRow Number of record want to get.
+	 * @return List of Referral objects.
+	 */
+	public List<Referral> getListReferral(int numberOfRow) {
+		List<Referral> listRef = null;
+		// Add code here
+		return listRef;
+	}
+	/**
+	 * Get Referral object from database by ID.
+	 * @param id Referral id.
+	 * @return If id is valid, return Referral object with match id, null otherwise.
+	 */
+	public Referral getReferralByID(int id) {
+		Referral refer = null;
+		// Add code here
+		return refer;
+	}
+	/**
 	 * Get list of Static objects from database.
 	 * @param numberOfRow Number of record want to get.
 	 * @return List of Static objects.
