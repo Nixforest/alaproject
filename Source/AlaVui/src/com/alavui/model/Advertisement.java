@@ -14,11 +14,32 @@
 */
 package com.alavui.model;
 
+import java.io.Serializable;
+
 /**
  * Model object Advertisement.
  * @author NguyenPT
  *
  */
-public class Advertisement {
+@SuppressWarnings("serial")
+public class Advertisement implements Serializable {
+	@Override
+	public String toString() {
+		return "Advertisement [getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) {
+			return false;
+		}
+		if (getClass() != o.getClass()) {
+			return false;
+		}
+		final Advertisement adv = (Advertisement)o;
+		// Add code here
+		return true;
+	}
 
 }
