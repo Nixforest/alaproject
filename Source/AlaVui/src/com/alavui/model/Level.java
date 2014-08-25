@@ -24,9 +24,43 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Level implements Serializable {
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/*
+	 * ID of level
 	 */
+	private int lid;
+	/*
+	 * Number of level
+	 */
+	private int level;
+	/*
+	 * Point of level
+	 */
+	private int point;
+	
+	public int getLid() {
+		return lid;
+	}
+
+	public void setLid(int lid) {
+		this.lid = lid;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {

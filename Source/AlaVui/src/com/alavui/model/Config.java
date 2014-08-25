@@ -24,9 +24,31 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Config implements Serializable {
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/*
+	 * Name of Setting
 	 */
+	private String setting;
+	/*
+	 * Value of Setting
+	 */
+	private String value;
+	
+	public String getSetting() {
+		return setting;
+	}
+
+	public void setSetting(String setting) {
+		this.setting = setting;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {

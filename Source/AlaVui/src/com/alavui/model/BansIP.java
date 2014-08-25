@@ -24,6 +24,19 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class BansIP implements Serializable {
 
+	/*
+	 * Bans IP
+	 */
+	private String ip;
+	
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

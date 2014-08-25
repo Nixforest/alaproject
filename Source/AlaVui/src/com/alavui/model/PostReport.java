@@ -24,9 +24,68 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class PostReport implements Serializable {
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/* 
+	 * Ip of Report
 	 */
+	private int rId;
+	/*
+	 * Post's Id
+	 */
+	private int pId = 0;
+	/*
+	 * time report
+	 */
+	private String time;
+	/*
+	 * ip 
+	 */
+	private String ip;
+	/*
+	 * reason of report
+	 */
+	private int reason;
+	
+	public int getrId() {
+		return rId;
+	}
+
+	public void setrId(int rId) {
+		this.rId = rId;
+	}
+
+	public int getpId() {
+		return pId;
+	}
+
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public int getReason() {
+		return reason;
+	}
+
+	public void setReason(int reason) {
+		this.reason = reason;
+	}
+
+	
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {

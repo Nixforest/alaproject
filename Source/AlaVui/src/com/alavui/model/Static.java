@@ -24,9 +24,43 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Static implements Serializable {
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/* 
+	 * id
 	 */
+	private int id;
+	/*
+	 * title
+	 */
+	private String title;
+	/*
+	 * value
+	 */
+	private String value;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
