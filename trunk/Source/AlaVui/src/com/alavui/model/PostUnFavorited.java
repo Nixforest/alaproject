@@ -24,9 +24,43 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class PostUnFavorited implements Serializable {
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/*
+	 * Unfavorite id
 	 */
+	private int fId;
+	/*
+	 * User id
+	 */
+	private int userId;
+	/*
+	 * post id
+	 */
+	private int pId;
+	
+	public int getfId() {
+		return fId;
+	}
+
+	public void setfId(int fId) {
+		this.fId = fId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getpId() {
+		return pId;
+	}
+
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
