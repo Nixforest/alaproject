@@ -4,7 +4,7 @@
     android:layout_height="fill_parent" >
 
     <ImageView
-        android:id="@id/bi_pictureprofile"
+        android:id="@+id/bi_pictureprofile"
         android:layout_width="100dip"
         android:layout_height="100dip"
         android:layout_alignParentLeft="true"
@@ -17,10 +17,10 @@
         android:id="@+id/tv_profile_page_name_acount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/bi_pictureprofile"
+        android:layout_alignTop="@+id/bi_pictureprofile"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="14dp"
-        android:layout_toRightOf="@id/bi_pictureprofile"
+        android:layout_toRightOf="@+id/bi_pictureprofile"
         android:textSize="20sp"
         android:text="@string/name_acount" />
 
@@ -46,7 +46,7 @@
         android:layout_height="80dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/bi_pictureprofile" >
+        android:layout_below="@+id/bi_pictureprofile" >
 
         <TextView
             android:id="@+id/tv_munber_pictute_upload"
