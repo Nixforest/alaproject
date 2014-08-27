@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/left"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:background="#82EC6F"
+        android:text="Hiển thị hình ảnh"
+        android:textSize="32sp" />
+     
+     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#6FB2EC"
+        android:text="Hiển thị thanh đánh giá"
+        android:textSize="32sp" />
+     
+     <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+	        <Button
+	            android:id="@+id/button2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="#ffffff"
+	            android:layout_alignParentLeft="true"
+	            android:drawableLeft="@drawable/like_icon"
+	            android:text="66" />
+	        
+	        <Button
+	            android:id="@+id/abc"
+	            android:text="8"
+	            android:background="#ffffff"
+	            android:layout_toRightOf="@+id/button2"
+	            android:paddingLeft="45dp"
+	            android:drawableLeft="@drawable/cmicon" 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" />
+	        <Button
+	            android:id="@+id/button4"
+	            android:drawableRight="@drawable/shareicon" 
+	            android:layout_width="wrap_content"
+	            android:background="#ffffff"
+	             android:layout_alignParentRight="true"
+	            android:layout_height="wrap_content" />
+
+	        
+
+	        <Button
+	            android:id="@+id/button3"
+	            android:paddingRight="45dp"
+	            android:background="#ffffff"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_toLeftOf="@+id/button4"
+	            android:drawableLeft="@drawable/downloadicon" />
+
+	    </RelativeLayout>
+</LinearLayout>

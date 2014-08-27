@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+    
+    <TextView
+        android:id="@+id/tv_post_image_rule1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/header"
+        android:gravity="center"
+        android:text="@string/rule1" />
+    <TextView
+        android:id="@+id/tv_post_image_rule2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_post_image_rule1"
+        android:gravity="center"
+        android:text="@string/rule2" />
+
+    <EditText
+        android:id="@+id/et_title_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_post_image_rule2"
+        android:ems="10"
+        android:hint="@string/title_of_image" />
+
+    <CheckBox
+        android:id="@+id/cb_self_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/et_title_image"
+        android:text="@string/self_image" />
+
+    <EditText
+        android:id="@+id/et_Source_of_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cb_self_image"
+        android:ems="10"
+        android:hint="@string/Source_of_image" />
+
+    <Button
+        android:id="@+id/btn_choose_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_Source_of_image"
+        android:layout_centerHorizontal="true"
+        android:text="@string/chosse_image"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/iv_review_image"
+        android:layout_width="298dp"
+        android:layout_height="180dp"
+        android:layout_below="@+id/btn_choose_image"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF"
+        android:src="@drawable/abc_ab_share_pack_holo_dark" android:contentDescription="TODO"/>
+
+    <Button
+        android:id="@+id/btn_upload_image"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/upload_image"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_post_image_number_image_of_rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/btn_upload_image"
+        android:layout_below="@+id/header"
+        android:layout_marginRight="54dp"
+        android:text="@string/number_image_rule" />
+
+    <TextView
+        android:id="@+id/tv_post_image_number_image_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/et_title_image"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/tv_post_image_number_image_of_rule"
+        android:text="@string/number_image_post"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    
+
+</RelativeLayout>
