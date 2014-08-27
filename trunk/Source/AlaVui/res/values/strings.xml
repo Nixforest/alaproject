@@ -9,16 +9,21 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="tvSettings">Activiy Settings</string>
     
-    <string name="navigation_new">Mới</string>
-    <string name="navigation_unread">Chưa xem</string>
-    <string name="navigation_hot">Hot</string>
-    <string name="navigation_old">Cũ</string>
-    <string name="navigation_vote">Bình chọn</string>
-    <string name="navigation_upload">Đăng ảnh</string>
-    <string name="navigation_video">Video</string>
-    <string name="navigation_signin">Đăng nhập</string>
-    <string name="navigation_setting">Tùy chọn</string>
-    <string name="navigation_more">Ứng dụng hay</string>
+    <string name="title_activity_applications">Activiy App</string>
+    <string name="title_activity_post_image">Activiy Post Image</string>
+    <string name="title_activity_setting">Activiy Settings</string>
+    
+   
+    <string name="drawer_new">Mới</string>
+    <string name="drawer_unread">Chưa xem</string>
+    <string name="drawer_hot">Hot</string>
+    <string name="drawer_old">Cũ</string>
+    <string name="drawer_vote">Bình chọn</string>
+    <string name="drawer_upload">Đăng ảnh</string>
+    <string name="drawer_video">Video</string>
+    <string name="drawer_signin">Đăng nhập</string>
+    <string name="drawer_setting">Tùy chọn</string>
+    <string name="drawer_more">Ứng dụng hay</string>
     <string name="app_id">518406641623410</string>
     <string name="title_login">Login To FaceBook</string>
 	<string name="settings">Settings</string>

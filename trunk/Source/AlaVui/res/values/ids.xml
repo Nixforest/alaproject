@@ -6,4 +6,8 @@
     <item name="et_tieudecuaanh" type="id"/> 
     <item name="et_nguoncuaanh" type="id"/>
     <item name="cb_anhtulam" type="id"/> 
+     <item name="main_layout" type="id"/>
+ <item name="drawer_layout" type="id"/>
+ <item name="content_layout" type="id"/>
+ <item name="drawer" type="id"/>
 </resources>
