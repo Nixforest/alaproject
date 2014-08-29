@@ -85,6 +85,26 @@ public final class GlobalVariable {
          "Ã­Ã¬á»‹á»‰Ä©", "Ã�ÃŒá»Šá»ˆÄ¨", "Ä‘", "Ä�", "Ã½á»³á»µá»·á»¹", "Ã�á»²á»´á»¶á»¸"};
 	 
 	 /*
+	  * Constants String success
+	  */
+	 public static final String SUCCESS_STRING					= "success";
+	 /*
+	  * Constants Fail
+	  */
+	 public static final int FAIL_VALUE							= 0;
+	 /*
+	  * Constant success
+	  */
+	 public static final int SUCCESS_VALUE						= 1;
+	 /*
+	  * Method POST
+	  */
+	 public static final String POST_METHOD					= "POST";
+	 /*
+	  * Method GET
+	  */
+	 public static final String GET_METHOD					= "GET";
+	 /*
 	  * String link get all members
 	  */
 	 public static final String URL_MEMBER_ALL				= "";
@@ -124,5 +144,29 @@ public final class GlobalVariable {
 	  * String link get post unfavorited by Id
 	  */
 	 public static final String URL_POST_UNFAVORITE_DETAIL	= "";
+	 /*
+	  * Table member
+	  */
+	 public static final String TABLE_MEMBERS				= "members";
+	 /*
+	  * User Id of member
+	  */
+	 public static final String USER_ID						= "USERID";
+	 /*
+	  * Email of member
+	  */
+	 public static final String EMAIL						= "email";
+	 /*
+	  * Username of member
+	  */
+	 public static final String USER_NAME					= "username";
+	 /*
+	  * Password of member
+	  */
+	 public static final String PASSWORD					= "passwrord";
+	 /*
+	  * Fullname of member
+	  */
+	 public static final String FULLNAME					= "fullname";
 	 
 }
