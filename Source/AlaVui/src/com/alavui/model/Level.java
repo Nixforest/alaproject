@@ -19,7 +19,8 @@ import java.io.Serializable;
 /**
  * Model object Level.
  * @author NguyenPT
- *
+ * Add Properties
+ * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class Level implements Serializable {
@@ -36,31 +37,61 @@ public class Level implements Serializable {
 	 * Point of level
 	 */
 	private int point;
-	
+
+	/**
+	 * @return the lid
+	 */
 	public int getLid() {
 		return lid;
 	}
 
+	/**
+	 * @param lid the lid to set
+	 */
 	public void setLid(int lid) {
 		this.lid = lid;
 	}
 
+	/**
+	 * @return the level
+	 */
 	public int getLevel() {
 		return level;
 	}
 
+	/**
+	 * @param level the level to set
+	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}
 
+	/**
+	 * @return the point
+	 */
 	public int getPoint() {
 		return point;
 	}
 
+	/**
+	 * @param point the point to set
+	 */
 	public void setPoint(int point) {
 		this.point = point;
 	}
 
+	/*
+	 * Default Constructor
+	 */
+	public Level(){
+		
+	}
+	
+	public Level(int id, int level, int point){
+		this.lid = id;
+		this.level = level;
+		this.point = point;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
@@ -70,7 +101,8 @@ public class Level implements Serializable {
 			return false;
 		}
 		final Level level = (Level)o;
-		// Add code here
+		if(this.level != level.level || this.point != level.point)
+			return false;
 		return true;
 	}
 

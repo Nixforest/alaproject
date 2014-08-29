@@ -19,7 +19,8 @@ import java.io.Serializable;
 /**
  * Model object Config.
  * @author NguyenPT
- *
+ * Add Properties
+ * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class Config implements Serializable {
@@ -32,23 +33,46 @@ public class Config implements Serializable {
 	 * Value of Setting
 	 */
 	private String value;
-	
+
+	/**
+	 * @return the setting
+	 */
 	public String getSetting() {
 		return setting;
 	}
 
+	/**
+	 * @param setting the setting to set
+	 */
 	public void setSetting(String setting) {
 		this.setting = setting;
 	}
 
+	/**
+	 * @return the value
+	 */
 	public String getValue() {
 		return value;
 	}
 
+	/**
+	 * @param value the value to set
+	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
 
+	/*
+	 * Default Constructor
+	 */
+	public Config(){
+		
+	}
+	
+	public Config(String setting, String value){
+		this.setting = setting;
+		this.value = value;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
@@ -58,13 +82,11 @@ public class Config implements Serializable {
 			return false;
 		}
 		final Config config = (Config)o;
-		// Add code here
+		if(this.setting != config.setting || this.value != config.value)
+			return false;
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Config [getClass()=" + getClass() + ", hashCode()="

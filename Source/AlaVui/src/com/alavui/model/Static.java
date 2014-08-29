@@ -37,30 +37,60 @@ public class Static implements Serializable {
 	 */
 	private String value;
 	
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**
+	 * @return the value
+	 */
 	public String getValue() {
 		return value;
 	}
 
+	/**
+	 * @param value the value to set
+	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
 
+	/*
+	 * Default Constructor
+	 */
+	public Static(){
+		
+	}
+	
+	public Static(int id, String title, String value){
+		this.id = id;
+		this.title = title;
+		this.value = value;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
@@ -70,7 +100,8 @@ public class Static implements Serializable {
 			return false;
 		}
 		final Static staticObject = (Static)o;
-		// Add code here
+		if(this.title != staticObject.title || this.value != staticObject.value)
+			return false;
 		return true;
 	}
 
