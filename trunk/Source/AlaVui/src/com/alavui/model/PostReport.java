@@ -19,7 +19,8 @@ import java.io.Serializable;
 /**
  * Model object Post Report.
  * @author NguyenPT
- *
+ * Add Properties
+ * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class PostReport implements Serializable {
@@ -45,47 +46,92 @@ public class PostReport implements Serializable {
 	 */
 	private int reason;
 	
+	
+	
+	/**
+	 * @return the rId
+	 */
 	public int getrId() {
 		return rId;
 	}
 
+	/**
+	 * @param rId the rId to set
+	 */
 	public void setrId(int rId) {
 		this.rId = rId;
 	}
 
+	/**
+	 * @return the pId
+	 */
 	public int getpId() {
 		return pId;
 	}
 
+	/**
+	 * @param pId the pId to set
+	 */
 	public void setpId(int pId) {
 		this.pId = pId;
 	}
 
+	/**
+	 * @return the time
+	 */
 	public String getTime() {
 		return time;
 	}
 
+	/**
+	 * @param time the time to set
+	 */
 	public void setTime(String time) {
 		this.time = time;
 	}
 
+	/**
+	 * @return the ip
+	 */
 	public String getIp() {
 		return ip;
 	}
 
+	/**
+	 * @param ip the ip to set
+	 */
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
 
+	/**
+	 * @return the reason
+	 */
 	public int getReason() {
 		return reason;
 	}
 
+	/**
+	 * @param reason the reason to set
+	 */
 	public void setReason(int reason) {
 		this.reason = reason;
 	}
 
+	/*
+	 * Default Constructor
+	 */
+	public PostReport(){
+		this.pId = 0;
+	}
 	
+	public PostReport(int rId, int pId, String time, String ip, int reason){
+		this.rId = rId;
+		this.pId = pId;
+		this.time = time;
+		this.ip = ip;
+		this.reason = reason;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
@@ -95,7 +141,8 @@ public class PostReport implements Serializable {
 			return false;
 		}
 		final PostReport post = (PostReport)o;
-		// Add code here
+		if(this.pId != post.pId || this.time != post.time || this.ip != post.ip || this.reason != post.reason)
+			return false;
 		return true;
 	}
 

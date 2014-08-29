@@ -19,7 +19,8 @@ import java.io.Serializable;
 /**
  * Model object BansIP.
  * @author NguyenPT
- *
+ * Add properties
+ * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class BansIP implements Serializable {
@@ -29,17 +30,30 @@ public class BansIP implements Serializable {
 	 */
 	private String ip;
 	
+	/**
+	 * @return the ip
+	 */
 	public String getIp() {
 		return ip;
 	}
 
+	/**
+	 * @param ip the ip to set
+	 */
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/*
+	 * Default Constructor
 	 */
+	
+	public BansIP(){
+		
+	}
+	
+	public BansIP(String ip){
+		this.ip = ip;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
@@ -49,13 +63,12 @@ public class BansIP implements Serializable {
 			return false;
 		}
 		final BansIP bansIP = (BansIP)o;
-		// Add code here
+		if(this.ip != bansIP.ip)
+			return false;
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
 		return "BansIP [getClass()=" + getClass() + ", hashCode()="
