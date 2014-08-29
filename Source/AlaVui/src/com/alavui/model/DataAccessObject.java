@@ -14,7 +14,21 @@
 */
 package com.alavui.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.provider.Settings.Global;
+
+import com.alavui.util.GlobalVariable;
+import com.alavui.util.Utility;
+import com.facebook.android.Util;
 
 /**
  * Data Access object.
@@ -22,7 +36,7 @@ import java.util.List;
  *
  */
 public enum DataAccessObject {
-	/**
+	/*
 	 * Instance of class.
 	 */
 	INSTANCE;
@@ -112,8 +126,34 @@ public enum DataAccessObject {
 	 * @return List of Member objects.
 	 */
 	public List<Member> getListMember(int numberOfRow) {
-		List<Member> listMember = null;
-		// Add code here
+		List<Member> listMember = new ArrayList<Member>();
+		JSONArray members = null;
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_MEMBER_ALL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try{
+			int success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				members = jsonObject.getJSONArray(GlobalVariable.TABLE_MEMBERS);
+				for(int i = 0; i < members.length(); i++){
+					Member member = new Member();
+					JSONObject jsonMember = members.getJSONObject(i);
+					member.setUserId(Integer.parseInt(jsonMember.getString(GlobalVariable.USER_ID)));
+					member.setEmail(jsonMember.getString(GlobalVariable.EMAIL));
+					member.setUserName(jsonMember.getString(GlobalVariable.USER_NAME));
+					member.setPassword(jsonMember.getString(GlobalVariable.PASSWORD));
+					member.setFullName(jsonMember.getString(GlobalVariable.FULLNAME));
+					listMember.add(member);
+					/* Check number row */
+					if(i > numberOfRow - 1){
+						return listMember;
+					}
+				}
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		}
 		return listMember;
 	}
 	/**
@@ -122,8 +162,30 @@ public enum DataAccessObject {
 	 * @return If id is valid, return Member object with match id, null otherwise.
 	 */
 	public Member getMemberByID(int id) {
-		Member member = null;
-		// Add code here
+		Member member = new Member();
+		int success = 0;
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		lstParams.add(new BasicNameValuePair(GlobalVariable.USER_ID, String.valueOf(id)));
+		
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_MEMBER_DETAIL,
+				GlobalVariable.GET_METHOD, lstParams);
+		
+		try{
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				JSONArray memberArray = jsonObject.getJSONArray("member");
+				JSONObject jsonMember = memberArray.getJSONObject(0);
+				/* Set value */
+				member.setUserId(Integer.parseInt(jsonMember.getString(GlobalVariable.USER_ID)));
+				member.setEmail(jsonMember.getString(GlobalVariable.EMAIL));
+				member.setUserName(jsonMember.getString(GlobalVariable.USER_NAME));
+				member.setPassword(jsonMember.getString(GlobalVariable.PASSWORD));
+				member.setFullName(jsonObject.getString(GlobalVariable.FULLNAME));
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		}
 		return member;
 	}
 	/**
