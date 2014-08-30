@@ -14,6 +14,9 @@
 */
 package com.alavui.model;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.provider.Settings.Global;
+import android.text.format.DateFormat;
 
 import com.alavui.util.GlobalVariable;
 import com.alavui.util.Utility;
@@ -138,7 +142,7 @@ public enum DataAccessObject {
 				for(int i = 0; i < members.length(); i++){
 					Member member = new Member();
 					JSONObject jsonMember = members.getJSONObject(i);
-					member.setUserId(Integer.parseInt(jsonMember.getString(GlobalVariable.USER_ID)));
+					member.setUserId(jsonMember.getInt(GlobalVariable.USER_ID));
 					member.setEmail(jsonMember.getString(GlobalVariable.EMAIL));
 					member.setUserName(jsonMember.getString(GlobalVariable.USER_NAME));
 					member.setPassword(jsonMember.getString(GlobalVariable.PASSWORD));
@@ -176,7 +180,7 @@ public enum DataAccessObject {
 				JSONArray memberArray = jsonObject.getJSONArray("member");
 				JSONObject jsonMember = memberArray.getJSONObject(0);
 				/* Set value */
-				member.setUserId(Integer.parseInt(jsonMember.getString(GlobalVariable.USER_ID)));
+				member.setUserId(jsonMember.getInt(GlobalVariable.USER_ID));
 				member.setEmail(jsonMember.getString(GlobalVariable.EMAIL));
 				member.setUserName(jsonMember.getString(GlobalVariable.USER_NAME));
 				member.setPassword(jsonMember.getString(GlobalVariable.PASSWORD));
@@ -194,8 +198,48 @@ public enum DataAccessObject {
 	 * @return List of Post objects.
 	 */
 	public List<Post> getListPost(int numberOfRow) {
-		List<Post> listPost = null;
-		// Add code here
+		List<Post> listPost = new ArrayList<Post>();
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		JSONArray posts = null;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
+		int success = 0;
+		
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_ALL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try{
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				posts = jsonObject.getJSONArray("posts");
+				for(int i = 0; i < posts.length(); i++){
+					Post post = new Post();
+					/* Get object JSON */
+					JSONObject objectPost = posts.getJSONObject(i);
+					post.setpId(objectPost.getInt(GlobalVariable.POST_ID));
+					post.setUserId(objectPost.getInt(GlobalVariable.USER_ID));
+					post.setStory(jsonObject.getString(GlobalVariable.POST_STORY));
+					post.setPic(jsonObject.getString(GlobalVariable.POST_PIC));
+					post.setYouTubeKey(jsonObject.getString(GlobalVariable.POST_YOUTUBE_KEY));
+					post.setUrl(jsonObject.getString(GlobalVariable.POST_URL));
+					post.setTimeAdded(jsonObject.getString(GlobalVariable.POST_TIME_ADDED));
+					post.setDateAdded((Date)dateFormat.parse(jsonObject.getString(GlobalVariable.POST_DATE_ADDED)));
+					post.setFavClicks(jsonObject.getInt(GlobalVariable.POST_FAVORITE_CLICKS));
+					post.setunfavClicks(jsonObject.getInt(GlobalVariable.POST_UNFAVORITE_CLICKS));
+					post.setView(jsonObject.getInt(GlobalVariable.POST_VIEW));
+					/* Set to list */
+					listPost.add(post);
+					/* Check row number */
+					if( i > numberOfRow - 1){
+						return listPost;
+					}
+				}
+			}
+		}catch(JSONException e){
+			return null;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 		return listPost;
 	}
 	/**
@@ -204,8 +248,41 @@ public enum DataAccessObject {
 	 * @return If id is valid, return Post object with match id, null otherwise.
 	 */
 	public Post getPostByID(int id) {
-		Post post = null;
-		// Add code here
+		Post post = new Post();
+		int success = 0;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_ID, String.valueOf(id)));
+		/* Get JSON object from URL via GET methos */
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_DETAIL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try{
+			/* Get result from JSON */
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				JSONArray postArray = jsonObject.getJSONArray("post");
+				/* Get value from JSON */
+				JSONObject objectPost = postArray.getJSONObject(0);
+				/* Set value to object */
+				post.setpId(objectPost.getInt(GlobalVariable.POST_ID));
+				post.setUserId(objectPost.getInt(GlobalVariable.USER_ID));
+				post.setStory(objectPost.getString(GlobalVariable.POST_STORY));
+				post.setPic(objectPost.getString(GlobalVariable.POST_PIC));
+				post.setYouTubeKey(objectPost.getString(GlobalVariable.POST_YOUTUBE_KEY));
+				post.setUrl(objectPost.getString(GlobalVariable.POST_URL));
+				post.setTimeAdded(objectPost.getString(GlobalVariable.POST_TIME_ADDED));
+				post.setDateAdded((Date)dateFormat.parse(objectPost.getString(GlobalVariable.POST_DATE_ADDED)));
+				post.setFavClicks(jsonObject.getInt(GlobalVariable.POST_FAVORITE_CLICKS));
+				post.setunfavClicks(jsonObject.getInt(GlobalVariable.POST_UNFAVORITE_CLICKS));
+				post.setView(jsonObject.getInt(GlobalVariable.POST_VIEW));
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 		return post;
 	}
 	/**
@@ -214,8 +291,37 @@ public enum DataAccessObject {
 	 * @return List of PostFavorited objects.
 	 */
 	public List<PostFavorited> getListPostFavorited(int numberOfRow) {
-		List<PostFavorited> listPostFav = null;
-		// Add code here
+		List<PostFavorited> listPostFav = new ArrayList<PostFavorited>();
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		JSONArray postsFavorited = null;
+		int success = 0;
+		/* Get JSON object Post favorited from URL via POST method */
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_FAVORITED_ALL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try{
+			/* Get result from JSON object */
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				/* Get array object */
+				postsFavorited = jsonObject.getJSONArray("posts_favorited");
+				for(int i = 0; i < postsFavorited.length(); i++){
+					PostFavorited favorited = new PostFavorited();
+					JSONObject objectFavorited = postsFavorited.getJSONObject(i);
+					favorited.setfId(objectFavorited.getInt(GlobalVariable.FAVORITED_ID));
+					favorited.setUserId(objectFavorited.getInt(GlobalVariable.POST_ID));
+					favorited.setpId(objectFavorited.getInt(GlobalVariable.POST_ID));
+					/* Set object to list */
+					listPostFav.add(favorited);
+					/* Check number records */
+					if(i > numberOfRow - 1){
+						return listPostFav;
+					}
+				}
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		}
 		return listPostFav;
 	}
 	/**
@@ -224,8 +330,29 @@ public enum DataAccessObject {
 	 * @return If id is valid, return PostFavorited object with match id, null otherwise.
 	 */
 	public PostFavorited getPostFavoritedByID(int id) {
-		PostFavorited postFav = null;
-		// Add code here
+		PostFavorited postFav = new PostFavorited();
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		int success = 0;
+		lstParams.add(new BasicNameValuePair(GlobalVariable.FAVORITED_ID, String.valueOf(id)));
+		
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_FAVORITED_DETAIL,
+				GlobalVariable.GET_METHOD, lstParams);
+		
+		try{
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				JSONArray favArray = jsonObject.getJSONArray("favorited");
+				JSONObject objectFav = favArray.getJSONObject(0);
+				/**/
+				postFav.setfId(objectFav.getInt(GlobalVariable.FAVORITED_ID));
+				postFav.setUserId(objectFav.getInt(GlobalVariable.USER_ID));
+				postFav.setpId(objectFav.getInt(GlobalVariable.POST_ID));
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		}
+		
 		return postFav;
 	}
 	/**

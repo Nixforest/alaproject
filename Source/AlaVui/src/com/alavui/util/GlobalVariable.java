@@ -145,28 +145,33 @@ public final class GlobalVariable {
 	  */
 	 public static final String URL_POST_UNFAVORITE_DETAIL	= "";
 	 /*
-	  * Table member
+	  * Table members and fields
 	  */
-	 public static final String TABLE_MEMBERS				= "members";
-	 /*
-	  * User Id of member
-	  */
+	 public static final String TABLE_MEMBERS				= "members"; 
 	 public static final String USER_ID						= "USERID";
-	 /*
-	  * Email of member
-	  */
 	 public static final String EMAIL						= "email";
-	 /*
-	  * Username of member
-	  */
 	 public static final String USER_NAME					= "username";
-	 /*
-	  * Password of member
-	  */
 	 public static final String PASSWORD					= "passwrord";
-	 /*
-	  * Fullname of member
-	  */
 	 public static final String FULLNAME					= "fullname";
 	 
+	 /*
+	  * Table posts and fields
+	  */
+	 public static final String TABLE_POSTS					= "posts";
+	 public static final String POST_ID						= "PID";
+	 public static final String POST_STORY					= "story";
+	 public static final String POST_PIC					= "pic";
+	 public static final String POST_YOUTUBE_KEY			= "youtube_key";
+	 public static final String POST_URL					= "url";
+	 public static final String POST_TIME_ADDED				= "time_added";
+	 public static final String POST_DATE_ADDED				= "date_added";
+	 public static final String POST_FAVORITE_CLICKS		= "favclicks";
+	 public static final String POST_UNFAVORITE_CLICKS		= "unfavclicks";
+	 public static final String POST_VIEW					= "view";
+	 
+	 /*
+	  * Table Post Favorited and fields
+	  */
+	 public static final String TABLE_POST_FAVORITED		= "posts_favorited";
+	 public static final String FAVORITED_ID				= "FID";
 }
