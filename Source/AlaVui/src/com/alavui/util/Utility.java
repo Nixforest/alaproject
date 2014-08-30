@@ -78,7 +78,7 @@ public final class Utility {
         /* Making HTTP request */
         try {
             /* check for request method */
-            if(method == "POST"){
+            if(method == GlobalVariable.POST_METHOD){
                 // request method is POST
                 DefaultHttpClient httpClient = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(url);
@@ -87,10 +87,10 @@ public final class Utility {
                 HttpResponse httpResponse = httpClient.execute(httpPost);
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();
-            }else if(method == "GET"){
+            }else if(method == GlobalVariable.GET_METHOD){
                 // request method is GET
                 DefaultHttpClient httpClient = new DefaultHttpClient();
-                String paramString = URLEncodedUtils.format(params, "utf-8");
+                String paramString = URLEncodedUtils.format(params, GlobalVariable.UTF8_ENCODE);
                 url += "?" + paramString;
                 HttpGet httpGet = new HttpGet(url);
 
@@ -108,7 +108,7 @@ public final class Utility {
 
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    is, "iso-8859-1"), 8);
+                    is, GlobalVariable.CHARSET_ISO88591), 8);
             StringBuilder sb = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -117,14 +117,16 @@ public final class Utility {
             is.close();
             json = sb.toString();
         } catch (Exception e) {
-            Log.e("Buffer Error", "Error converting result " + e.toString());
+            Log.e(GlobalVariable.MSG_BUFFER_ERR,
+            		GlobalVariable.MSG_ERR_CONV_RESLT + e.toString());
         }
 
         // try parse the string to a JSON object
         try {
             jObj = new JSONObject(json);
         } catch (JSONException e) {
-            Log.e("JSON Parser", "Error parsing data " + e.toString());
+            Log.e(GlobalVariable.MSG_JSON_PARSER,
+            		"Error parsing data " + e.toString());
         }
 
         // return JSON String

@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  30-Aug-2014	HuyNA		Implement DataAccessObject
 */
 package com.alavui.model;
 
@@ -18,7 +19,6 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -27,12 +27,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.provider.Settings.Global;
-import android.text.format.DateFormat;
-
 import com.alavui.util.GlobalVariable;
 import com.alavui.util.Utility;
-import com.facebook.android.Util;
 
 /**
  * Data Access object.
@@ -135,11 +131,11 @@ public enum DataAccessObject {
 		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
 		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_MEMBER_ALL,
 				GlobalVariable.GET_METHOD, lstParams);
-		try{
+		try {
 			int success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
-			if(success == GlobalVariable.SUCCESS_VALUE){
+			if (success == GlobalVariable.SUCCESS_VALUE) {
 				members = jsonObject.getJSONArray(GlobalVariable.TABLE_MEMBERS);
-				for(int i = 0; i < members.length(); i++){
+				for (int i = 0; i < members.length(); i++) {
 					Member member = new Member();
 					JSONObject jsonMember = members.getJSONObject(i);
 					member.setUserId(jsonMember.getInt(GlobalVariable.USER_ID));
@@ -149,12 +145,12 @@ public enum DataAccessObject {
 					member.setFullName(jsonMember.getString(GlobalVariable.FULLNAME));
 					listMember.add(member);
 					/* Check number row */
-					if(i > numberOfRow - 1){
+					if (i > (numberOfRow - 1)) {
 						return listMember;
 					}
 				}
 			}
-		}catch(JSONException e){
+		} catch(JSONException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -174,9 +170,9 @@ public enum DataAccessObject {
 		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_MEMBER_DETAIL,
 				GlobalVariable.GET_METHOD, lstParams);
 		
-		try{
+		try {
 			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
-			if(success == GlobalVariable.SUCCESS_VALUE){
+			if (success == GlobalVariable.SUCCESS_VALUE) {
 				JSONArray memberArray = jsonObject.getJSONArray("member");
 				JSONObject jsonMember = memberArray.getJSONObject(0);
 				/* Set value */
@@ -186,7 +182,7 @@ public enum DataAccessObject {
 				member.setPassword(jsonMember.getString(GlobalVariable.PASSWORD));
 				member.setFullName(jsonObject.getString(GlobalVariable.FULLNAME));
 			}
-		}catch(JSONException e){
+		} catch(JSONException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -201,16 +197,16 @@ public enum DataAccessObject {
 		List<Post> listPost = new ArrayList<Post>();
 		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
 		JSONArray posts = null;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat(GlobalVariable.DATE_FORMAT);
 		int success = 0;
 		
 		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_ALL,
 				GlobalVariable.GET_METHOD, lstParams);
-		try{
+		try {
 			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
-			if(success == GlobalVariable.SUCCESS_VALUE){
+			if (success == GlobalVariable.SUCCESS_VALUE) {
 				posts = jsonObject.getJSONArray("posts");
-				for(int i = 0; i < posts.length(); i++){
+				for (int i = 0; i < posts.length(); i++) {
 					Post post = new Post();
 					/* Get object JSON */
 					JSONObject objectPost = posts.getJSONObject(i);
@@ -250,7 +246,7 @@ public enum DataAccessObject {
 	public Post getPostByID(int id) {
 		Post post = new Post();
 		int success = 0;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat(GlobalVariable.DATE_FORMAT);
 		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
 		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_ID, String.valueOf(id)));
 		/* Get JSON object from URL via GET methos */

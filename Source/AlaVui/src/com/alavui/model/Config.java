@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -19,22 +20,20 @@ import java.io.Serializable;
 /**
  * Model object Config.
  * @author NguyenPT
- * Add Properties
- * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class Config implements Serializable {
-
-	/*
+	/**
 	 * Name of Setting
 	 */
 	private String setting;
-	/*
+	/**
 	 * Value of Setting
 	 */
 	private String value;
 
 	/**
+	 * Get setting value.
 	 * @return the setting
 	 */
 	public String getSetting() {
@@ -42,6 +41,7 @@ public class Config implements Serializable {
 	}
 
 	/**
+	 * Set setting value.
 	 * @param setting the setting to set
 	 */
 	public void setSetting(String setting) {
@@ -49,6 +49,7 @@ public class Config implements Serializable {
 	}
 
 	/**
+	 * Get value.
 	 * @return the value
 	 */
 	public String getValue() {
@@ -56,20 +57,27 @@ public class Config implements Serializable {
 	}
 
 	/**
+	 * Set value.
 	 * @param value the value to set
 	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
 
-	/*
+	/**
 	 * Default Constructor
 	 */
 	public Config(){
-		
+		this.setting = "";
+		this.value = "";
 	}
 	
-	public Config(String setting, String value){
+	/**
+	 * Constructor.
+	 * @param setting	Value of setting
+	 * @param value		Value of value
+	 */
+	public Config(String setting, String value) {
 		this.setting = setting;
 		this.value = value;
 	}
@@ -82,8 +90,10 @@ public class Config implements Serializable {
 			return false;
 		}
 		final Config config = (Config)o;
-		if(this.setting != config.setting || this.value != config.value)
+		if ((this.setting != config.setting)
+				|| (this.value != config.value)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -92,5 +102,4 @@ public class Config implements Serializable {
 		return "Config [getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
 }

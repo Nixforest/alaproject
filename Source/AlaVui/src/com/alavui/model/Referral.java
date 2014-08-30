@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -23,32 +24,31 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Referral implements Serializable {
-
-	/*
-	 * Ref id
+	/**
+	 * Ref id.
 	 */
 	private int rId;
-	/*
-	 * User id
+	/**
+	 * User id.
 	 */
 	private int userId ;
-	/*
-	 * referred
+	/**
+	 * referred.
 	 */
 	private int referred ;
-	/*
-	 * Money
+	/**
+	 * Money.
 	 */
 	private float money;
-	/*
-	 * Time added
+	/**
+	 * Time added.
 	 */
 	private String timeAdded;
-	/*
-	 * Ip
+	/**
+	 * Ip.
 	 */
 	private String ip;
-	/*
+	/**
 	 * Status
 	 */
 	private int status ;
@@ -151,15 +151,24 @@ public class Referral implements Serializable {
 		this.status = status;
 	}
 
-	/*
-	 * Default Constructor
+	/**
+	 * Default Constructor.
 	 */
 	public Referral(){
 		this.userId = 0;
 		this.referred  = 0;
 		this.status = 0;
 	}
-	
+	/**
+	 * Constructor
+	 * @param rId
+	 * @param userId
+	 * @param referred
+	 * @param money
+	 * @param timeAdded
+	 * @param ip
+	 * @param status
+	 */
 	public Referral(int rId, int userId, int referred, int money, String timeAdded, String ip, int status){
 		this.rId = rId;
 		this.userId = userId;
@@ -178,8 +187,14 @@ public class Referral implements Serializable {
 			return false;
 		}
 		final Referral referral = (Referral)o;
-		if(this.userId != referral.userId || this.referred != referral.referred || this.money != referral.money || this.timeAdded != referral.timeAdded || this.ip != referral.ip || this.status != referral.status)
+		if ((this.userId != referral.userId)
+				|| (this.referred != referral.referred)
+				|| (this.money != referral.money)
+				|| (this.timeAdded != referral.timeAdded)
+				|| (this.ip != referral.ip)
+				|| (this.status != referral.status)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -191,5 +206,4 @@ public class Referral implements Serializable {
 		return "Referral [getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
 }

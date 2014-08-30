@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -19,34 +20,30 @@ import java.io.Serializable;
 /**
  * Model object Post Report.
  * @author NguyenPT
- * Add Properties
- * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class PostReport implements Serializable {
 
-	/* 
-	 * Ip of Report
+	/**
+	 * Ip of Report.
 	 */
 	private int rId;
-	/*
-	 * Post's Id
+	/**
+	 * Post's Id.
 	 */
 	private int pId = 0;
-	/*
-	 * time report
+	/**
+	 * time report.
 	 */
 	private String time;
-	/*
-	 * ip 
+	/**
+	 * ip.
 	 */
 	private String ip;
-	/*
-	 * reason of report
+	/**
+	 * reason of report.
 	 */
-	private int reason;
-	
-	
+	private int reason;	
 	
 	/**
 	 * @return the rId
@@ -118,13 +115,20 @@ public class PostReport implements Serializable {
 		this.reason = reason;
 	}
 
-	/*
-	 * Default Constructor
+	/**
+	 * Default Constructor.
 	 */
 	public PostReport(){
 		this.pId = 0;
 	}
-	
+	/**
+	 * Constructor.
+	 * @param rId		Report ID
+	 * @param pId		Post ID
+	 * @param time		Time
+	 * @param ip		IP
+	 * @param reason	Reason
+	 */
 	public PostReport(int rId, int pId, String time, String ip, int reason){
 		this.rId = rId;
 		this.pId = pId;
@@ -141,8 +145,12 @@ public class PostReport implements Serializable {
 			return false;
 		}
 		final PostReport post = (PostReport)o;
-		if(this.pId != post.pId || this.time != post.time || this.ip != post.ip || this.reason != post.reason)
+		if ((this.pId != post.pId)
+				|| (this.time != post.time)
+				|| (this.ip != post.ip)
+				|| (this.reason != post.reason)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -154,5 +162,4 @@ public class PostReport implements Serializable {
 		return "PostReport [getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
 }

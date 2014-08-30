@@ -1,5 +1,10 @@
 package com.alavui.ui;
 
+import java.util.List;
+
+import com.alavui.controller.MainController;
+import com.alavui.model.Post;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -41,6 +46,7 @@ public class ImageViewFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View myFragmentView = new View(container.getContext());
+		//List<Post> listPost = MainController.INSTANCE.getData(Post.class, 10);
 		myFragmentView = inflater.inflate(R.layout.imageview_layout, container,
 				false);
 		TextView myText = (TextView) myFragmentView.findViewById(R.id.textView1);

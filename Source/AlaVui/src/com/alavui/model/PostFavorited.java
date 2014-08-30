@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -19,22 +20,19 @@ import java.io.Serializable;
 /**
  * Model object Post Favorited.
  * @author NguyenPT
- * Add Properties
- * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class PostFavorited implements Serializable {
-
-	/* 
-	 * Favorite ID
+	/**
+	 * Favorite ID.
 	 */
 	private int fId;
-	/*
-	 * user's Id
+	/**
+	 * user's Id.
 	 */
 	private int userId;
-	/*
-	 * Id of Post
+	/**
+	 * Id of Post.
 	 */
 	private int pId;
 	
@@ -80,14 +78,19 @@ public class PostFavorited implements Serializable {
 		this.pId = pId;
 	}
 
-	/*
+	/**
 	 * Default Constructor
 	 */
 	public PostFavorited(){
 		userId = 0;
 		pId = 0;
 	}
-	
+	/**
+	 * Constructor.
+	 * @param fId		Favorite id
+	 * @param userId	User id
+	 * @param pId		Post ID
+	 */
 	public PostFavorited(int fId,int userId, int pId){
 		this.fId = fId;
 		this.userId = userId;
@@ -102,8 +105,10 @@ public class PostFavorited implements Serializable {
 			return false;
 		}
 		final PostFavorited post = (PostFavorited)o;
-		if(this.userId != post.userId || this.pId != post.pId)
+		if ((this.userId != post.userId)
+				|| (this.pId != post.pId)) {
 			return false;
+		}
 		return true;
 	}
 
