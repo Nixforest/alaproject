@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -25,127 +26,126 @@ import java.sql.Date;
 @SuppressWarnings("serial")
 public class Member implements Serializable {
 
-	/*
-	 * ID of User
+	/**
+	 * ID of User.
 	 */
 	private int userId;
-	/*
-	 * Email of User
+	/**
+	 * Email of User.
 	 */
 	private String email;
-	/*
-	 * User's Name
+	/**
+	 * User's Name.
 	 */
 	private String userName;
-	/*
-	 * Password of User
+	/**
+	 * Password of User.
 	 */
 	private String password;
-	/*
-	 * pwd of User
+	/**
+	 * pwd of User.
 	 */
 	private String pwd;
-	/*
-	 * Fullname of User
+	/**
+	 * Full name of User.
 	 */
 	private String fullName;
-	/*
-	 * Gender of User
+	/**
+	 * Gender of User.
 	 */
 	private String gender;
-	/*
-	 * Desciption of User
+	/**
+	 * Description of User.
 	 */
 	private String description;
-	/*
-	 * Country of User
+	/**
+	 * Country of User.
 	 */
 	private String country;
-	/*
-	 * Number of view of User's Image
+	/**
+	 * Number of view of User's Image.
 	 */
 	private int yourViewed;
-	/*
-	 * Number of profile's view
+	/**
+	 * Number of profile's view.
 	 */
 	private int profileViews;
-	/*
-	 * Number of Image that User viewd
+	/**
+	 * Number of Image that User viewed.
 	 */
 	private int youViewed;
-	/*
-	 * Time that User added
+	/**
+	 * Time that User added.
 	 */
 	private String addTime;
-	/*
-	 * Last Login's Time
+	/**
+	 * Last Login's Time.
 	 */
 	private String lastLogin;
-	/*
-	 * Check whether user is verified or not. 1 if verified or 0 instead
+	/**
+	 * Check whether user is verified or not. 1 if verified or 0 instead.
 	 */
 	private char verified;
-	/*
-	 * Status of User (0 for false or 1 for true)
+	/**
+	 * Status of User (0 for false or 1 for true).
 	 */
 	private Boolean status;
-	/*
-	 * Profile picture of User
+	/**
+	 * Profile picture of User.
 	 */
 	private String profilePicture;
-	/*
-	 * Key for remember user
+	/**
+	 * Key for remember user.
 	 */
 	private String rememberMeKey;
-	/*
-	 * Time for remember user
+	/**
+	 * Time for remember user.
 	 */
 	private Date rememberMeTime; 
-	/*
-	 * User's IP
+	/**
+	 * User's IP.
 	 */
 	private String ip;
-	/*
-	 * Key of User's IP
+	/**
+	 * Key of User's IP.
 	 */
 	private String lIp;
-	/*
-	 * Website of User
+	/**
+	 * Web site of User.
 	 */
 	private String website;
-	/*
-	 * Check whether user is new member or not?
+	/**
+	 * Check whether user is new member or not?.
 	 */
 	private int news;
-	/*
-	 * User's Lang
+	/**
+	 * User's Language.
 	 */
 	private String myLang;
-	/*
-	 * Color 1
+	/**
+	 * Color 1.
 	 */
 	private String color1;
-	/*
-	 * Color 2
+	/**
+	 * Color 2.
 	 */
 	private String color2;
-	/*
-	 * Filter
+	/**
+	 * Filter.
 	 */
 	private int filter;
-	/*
-	 * User's point
+	/**
+	 * User's point.
 	 */
 	private int point;
-	/*
-	 * User's Twiter ID
+	/**
+	 * User's Twitter ID.
 	 */
 	private int twiterId;
-	/*
-	 * Cover
+	/**
+	 * Cover.
 	 */
-	private String cover;
-	
+	private String cover;	
 
 	/**
 	 * @return the userId
@@ -442,14 +442,14 @@ public class Member implements Serializable {
 	}
 
 	/**
-	 * @return the website
+	 * @return the web site
 	 */
 	public String getWebsite() {
 		return website;
 	}
 
 	/**
-	 * @param website the website to set
+	 * @param website the web site to set
 	 */
 	public void setWebsite(String website) {
 		this.website = website;
@@ -567,7 +567,7 @@ public class Member implements Serializable {
 		this.cover = cover;
 	}
 
-	/*
+	/**
 	 * Default Constructor
 	 */
 	public Member(){
@@ -582,7 +582,39 @@ public class Member implements Serializable {
 		this.filter = 1;
 		this.twiterId = 0;
 	}
-	
+	/**
+	 * Constructor.
+	 * @param uid				User ID
+	 * @param email				User email
+	 * @param name				Name of user
+	 * @param pass				Password
+	 * @param pwd				pwd
+	 * @param fullname			Full name
+	 * @param gender			Gender
+	 * @param des				Description
+	 * @param country			Country
+	 * @param yourviewed		Number of view of User's image.
+	 * @param profileviews		Number of profile's view
+	 * @param youviewed			Number of image user viewed
+	 * @param addtime			Time that User added
+	 * @param lastlogin			Last Login's Time
+	 * @param verified			Check whether user is verified or not. 1 if verified or 0 instead
+	 * @param status			Status of User (0 for false or 1 for true)
+	 * @param profilepicture	Profile picture of User
+	 * @param rememberkey		Key for remember user
+	 * @param remembertime		Time for remember user
+	 * @param ip				User's IP
+	 * @param lip				Key of User's IP
+	 * @param website			Web site of User
+	 * @param news				Check whether user is new member or not?
+	 * @param mylang			User's Language
+	 * @param color1			Color 1
+	 * @param color2			Color 2
+	 * @param filter			Filter
+	 * @param points			User's point
+	 * @param twiter			User's Twitter ID
+	 * @param cover				Cover value
+	 */
 	public Member(int uid, String email, String name, String pass, String pwd, String fullname, String gender, String des, String country, int yourviewed,
 				  int profileviews, int youviewed, String addtime, String lastlogin, char verified, Boolean status, String profilepicture, String rememberkey, Date remembertime,
 				  String ip, String lip, String website, int news, String mylang, String color1, String color2, int filter, int points, int twiter, String cover){
@@ -626,12 +658,37 @@ public class Member implements Serializable {
 			return false;
 		}
 		final Member member = (Member)o;
-		if(this.email != member.email || this.userName != member.userName || this.password != member.password || this.pwd != member.pwd || this.fullName != member.fullName ||
-		   this.gender != member.gender || this.description != member.description || this.country != member.country || this.yourViewed != member.yourViewed || this.profileViews != member.profileViews || this.youViewed != member.youViewed ||
-		   this.addTime != member.addTime || this.lastLogin != member.lastLogin || this.verified != member.verified || this.status != member.status || this.profilePicture != member.profilePicture || this.rememberMeKey != member.rememberMeKey ||
-		   this.rememberMeTime != member.rememberMeTime || this.ip != member.ip || this.lIp != member.lIp || this.website != member.website || this.news != member.news || this.myLang != member.myLang || this.color1 != member.color1 || this.color2 != member.color2 ||
-		   this.filter != member.filter || this.point != member.point || this.twiterId != member.twiterId || this.cover != member.cover)
+		if ((this.email != member.email)
+				|| (this.userName 		!= member.userName)
+				|| (this.password 		!= member.password)
+				|| (this.pwd 			!= member.pwd)
+				|| (this.fullName 		!= member.fullName)
+				|| (this.gender 		!= member.gender)
+				|| (this.description 	!= member.description)
+				|| (this.country 		!= member.country)
+				|| (this.yourViewed 	!= member.yourViewed)
+				|| (this.profileViews 	!= member.profileViews)
+				|| (this.youViewed 		!= member.youViewed)
+				|| (this.addTime 		!= member.addTime)
+				|| (this.lastLogin 		!= member.lastLogin)
+				|| (this.verified 		!= member.verified)
+				|| (this.status 		!= member.status)
+				|| (this.profilePicture != member.profilePicture)
+				|| (this.rememberMeKey 	!= member.rememberMeKey)
+				|| (this.rememberMeTime != member.rememberMeTime)
+				|| (this.ip 			!= member.ip)
+				|| (this.lIp 			!= member.lIp)
+				|| (this.website 		!= member.website)
+				|| (this.news 			!= member.news)
+				|| (this.myLang 		!= member.myLang)
+				|| (this.color1			!= member.color1)
+				|| (this.color2 		!= member.color2)
+				|| (this.filter 		!= member.filter)
+				|| (this.point 			!= member.point)
+				|| (this.twiterId 		!= member.twiterId)
+				|| (this.cover 			!= member.cover)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -643,5 +700,4 @@ public class Member implements Serializable {
 		return "Member [getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
 }

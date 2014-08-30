@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -23,20 +24,18 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class PostUnFavorited implements Serializable {
-
-	/*
-	 * Unfavorite id
+	/**
+	 * Unfavorite id.
 	 */
 	private int fId;
-	/*
-	 * User id
+	/**
+	 * User id.
 	 */
 	private int userId;
-	/*
-	 * post id
+	/**
+	 * post id.
 	 */
-	private int pId;
-	
+	private int pId;	
 	
 	/**
 	 * @return the fId
@@ -80,14 +79,19 @@ public class PostUnFavorited implements Serializable {
 		this.pId = pId;
 	}
 
-	/*
-	 * Default Constructor
+	/**
+	 * Default Constructor.
 	 */
 	public PostUnFavorited(){
 		this.userId = 0;
 		this.pId = 0;
 	}
-	
+	/**
+	 * Constructor
+	 * @param fId	Favorite ID
+	 * @param uId	User id
+	 * @param pId	Post id
+	 */
 	public PostUnFavorited(int fId, int uId, int pId){
 		this.fId = fId;
 		this.userId = uId;
@@ -102,8 +106,10 @@ public class PostUnFavorited implements Serializable {
 			return false;
 		}
 		final PostUnFavorited post = (PostUnFavorited)o;
-		if(this.userId != post.userId || this.pId != post.pId)
+		if ((this.userId != post.userId)
+				|| (this.pId != post.pId)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -115,5 +121,4 @@ public class PostUnFavorited implements Serializable {
 		return "PostUnFavorited [getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
 }

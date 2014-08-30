@@ -11,141 +11,137 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-import android.hardware.Camera.Face;
-
 /**
  * Model object Post.
  * @author NguyenPT.
- * Add Properties
- * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class Post implements Serializable {
-
-	/*
-	 * ID of Post
+	/**
+	 * ID of Post.
 	 */
 	private int pId;
-	/*
-	 * Id of user who post this image
+	/**
+	 * Id of user who post this image.
 	 */
 	private int userId;
-	/*
-	 * name of post
+	/**
+	 * Name of post.
 	 */
 	private String story;
-	/*
-	 * Tag of post
+	/**
+	 * Tag of post.
 	 */
 	private String tag;
-	/*
-	 * Source
+	/**
+	 * Source.
 	 */
 	private String source;
-	/*
-	 * nsfw
+	/**
+	 * nsfw.
 	 */
 	private int nsfw;
-	/*
-	 * Name of picture or video of Post
+	/**
+	 * Name of picture or video of Post.
 	 */
 	private String pic;
-	/*
-	 * youtube key of Image if Image is a Video
+	/**
+	 * youtube key of Image if Image is a Video.
 	 */
 	private String youTubeKey;
-	/*
-	 * Fod key 
+	/**
+	 * Fod key. 
 	 */
 	private String fodKey;
-	/*
-	 * url of Image
+	/**
+	 * Url of Image.
 	 */
 	private String url;
-	/*
-	 * time that Image is added
+	/**
+	 * Time that Image is added.
 	 */
 	private String timeAdded;
-	/*
-	 * Date that Image is added
+	/**
+	 * Date that Image is added.
 	 */
 	private Date dateAdded;
-	/*
-	 * active? y/n
+	/**
+	 * Active? y/n.
 	 */
 	private char active;
-	/*
-	 * phase
+	/**
+	 * phase.
 	 */
 	private int phase = 0;
-	/*
-	 * Number of Favorite clicked
+	/**
+	 * Number of Favorite clicked.
 	 */
 	private int favClicks = 0;
-	/*
-	 * last view
+	/**
+	 * Last view.
 	 */
 	private String lastViewed;
-	/*
-	 * mod_yes
+	/**
+	 * mod_yes.
 	 */
 	private int modYes = 0;
-	/*
-	 * mod_no
+	/**
+	 * mod_no.
 	 */
 	private int modNo = 0;
-	/*
-	 * pip 1
+	/**
+	 * pip 1.
 	 */
 	private String pip;
-	/*
-	 * pip 2
+	/**
+	 * pip 2.
 	 */
 	private String pip2;
-	/*
-	 * Number of Unfavorite clicked
+	/**
+	 * Number of Unfavorite clicked.
 	 */
 	private int unfavClicks = 0;
-	/*
-	 * fix
+	/**
+	 * fix.
 	 */
 	private int fix = 0;
-	/*
-	 * short
+	/**
+	 * short.
 	 */
 	private String shortDes;
-	/*
-	 * ttime
+	/**
+	 * ttime.
 	 */
 	private String tTime;
-	/*
-	 * htime
+	/**
+	 * htime.
 	 */
 	private String hTime;
-	/*
-	 * feat
+	/**
+	 * feat.
 	 */
 	private int feat = 0;
-	/*
-	 * rec
+	/**
+	 * rec.
 	 */
 	private int rec = 0;
-	/*
-	 * view
+	/**
+	 * view.
 	 */
 	private int view = 0;
-	/*
-	 * bulk
+	/**
+	 * bulk.
 	 */
 	private char bulk = '0';
-	/*
-	 * post content 
+	/**
+	 * post content .
 	 */
 	private String postContent;
 	
@@ -569,13 +565,13 @@ public class Post implements Serializable {
 		this.postContent = postContent;
 	}
 
-	/*
-	 * Default Constructor
+	/**
+	 * Default Constructor.
 	 */
 	public Post(){
 		this.userId = 0;
 		this.nsfw = 0;
-		this.dateAdded = new Date(0000,00,00);
+		this.dateAdded = new Date(0);
 		this.phase = 0;
 		this.favClicks = 0;
 		this.modYes = 0;
@@ -587,7 +583,39 @@ public class Post implements Serializable {
 		this.view = 0;
 		this.bulk = '0';
 	}
-	
+	/**
+	 * Constructor.
+	 * @param pId
+	 * @param userId
+	 * @param story
+	 * @param tags
+	 * @param source
+	 * @param nsfw
+	 * @param pic
+	 * @param youtubeKey
+	 * @param fodKey
+	 * @param url
+	 * @param timeAdded
+	 * @param dateAdded
+	 * @param active
+	 * @param phase
+	 * @param favClicks
+	 * @param lastViewed
+	 * @param modYes
+	 * @param modNo
+	 * @param pip
+	 * @param pip2
+	 * @param unfavClicks
+	 * @param fix
+	 * @param shortDes
+	 * @param ttime
+	 * @param htime
+	 * @param feat
+	 * @param rec
+	 * @param view
+	 * @param bulk
+	 * @param postContent
+	 */
 	public Post(int pId, int userId, String story, String tags, String source, int nsfw, String pic, String youtubeKey, String fodKey, String url, String timeAdded, 
 				Date dateAdded, char active, int phase, int favClicks, String lastViewed, int modYes, int modNo, String pip, String pip2, int unfavClicks, int fix,
 				String shortDes, String ttime, String htime, int feat, int rec, int view, char bulk, String postContent){
@@ -631,11 +659,37 @@ public class Post implements Serializable {
 			return false;
 		}
 		final Post post = (Post)o;
-		if(this.userId != post.userId || this.story != post.story || this.tag != post.tag || this.source != post.source || this.nsfw != post.nsfw || this.pic != post.pic || this.youTubeKey != post.youTubeKey ||
-			this.fodKey != post.fodKey || this.url != post.url || this.timeAdded != post.timeAdded || this.dateAdded != post.dateAdded || this.active != post.active || this.phase != post.phase || this.favClicks != post.favClicks || this.lastViewed != post.lastViewed ||
-			this.modYes != post.modYes || this.modNo != post.modNo || this.pip != post.pip || this.pip2 != post.pip2 || this.unfavClicks != post.unfavClicks || this.fix != post.fix || this.shortDes != post.shortDes || this.tTime != post.tTime || this.hTime != post.hTime ||
-			this.feat != post.feat || this.rec != post.rec || this.view != post.view || this.bulk != post.bulk || this.postContent != post.postContent)
+		if ((this.userId != post.userId)
+				|| this.story != post.story
+				|| this.tag != post.tag
+				|| this.source != post.source
+				|| this.nsfw != post.nsfw
+				|| this.pic != post.pic
+				|| this.youTubeKey != post.youTubeKey
+				|| this.fodKey != post.fodKey
+				|| this.url != post.url
+				|| this.timeAdded != post.timeAdded
+				|| this.dateAdded != post.dateAdded
+				|| this.active != post.active
+				|| this.phase != post.phase
+				|| this.favClicks != post.favClicks
+				|| this.lastViewed != post.lastViewed
+				|| this.modYes != post.modYes
+				|| this.modNo != post.modNo
+				|| this.pip != post.pip
+				|| this.pip2 != post.pip2
+				|| this.unfavClicks != post.unfavClicks
+				|| this.fix != post.fix
+				|| this.shortDes != post.shortDes
+				|| this.tTime != post.tTime
+				|| this.hTime != post.hTime
+				|| this.feat != post.feat
+				|| this.rec != post.rec
+				|| this.view != post.view
+				|| this.bulk != post.bulk
+				|| this.postContent != post.postContent) {
 			return false;
+		}
 		return true;
 	}
 
@@ -647,5 +701,4 @@ public class Post implements Serializable {
 		return "Post [getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
-
 }

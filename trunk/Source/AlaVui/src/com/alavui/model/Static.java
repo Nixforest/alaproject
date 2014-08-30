@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  25-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -23,17 +24,16 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Static implements Serializable {
-
-	/* 
-	 * id
+	/** 
+	 * id.
 	 */
 	private int id;
-	/*
-	 * title
+	/**
+	 * title.
 	 */
 	private String title;
-	/*
-	 * value
+	/**
+	 * value.
 	 */
 	private String value;
 	
@@ -79,13 +79,18 @@ public class Static implements Serializable {
 		this.value = value;
 	}
 
-	/*
-	 * Default Constructor
+	/**
+	 * Default Constructor.
 	 */
 	public Static(){
 		
 	}
-	
+	/**
+	 * Constructor
+	 * @param id		ID
+	 * @param title		Title
+	 * @param value		Value
+	 */
 	public Static(int id, String title, String value){
 		this.id = id;
 		this.title = title;
@@ -100,8 +105,10 @@ public class Static implements Serializable {
 			return false;
 		}
 		final Static staticObject = (Static)o;
-		if(this.title != staticObject.title || this.value != staticObject.value)
+		if ((this.title != staticObject.title)
+				|| (this.value != staticObject.value)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -113,5 +120,4 @@ public class Static implements Serializable {
 		return "Static [getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
 }

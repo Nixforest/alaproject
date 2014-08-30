@@ -11,6 +11,7 @@
 * DATE    AUTHOR DESCRIPTION
 *  --------------------------------------------------------
 *  23-Aug-2014	NguyenPT	Init coding
+*  29-Aug-2014	HuyNV		Add properties
 */
 package com.alavui.model;
 
@@ -19,26 +20,24 @@ import java.io.Serializable;
 /**
  * Model object Level.
  * @author NguyenPT
- * Add Properties
- * @author HuyNV
  */
 @SuppressWarnings("serial")
 public class Level implements Serializable {
-
-	/*
-	 * ID of level
+	/**
+	 * ID of level.
 	 */
 	private int lid;
-	/*
-	 * Number of level
+	/**
+	 * Number of level.
 	 */
 	private int level;
-	/*
-	 * Point of level
+	/**
+	 * Point of level.
 	 */
 	private int point;
 
 	/**
+	 * Get level ID.
 	 * @return the lid
 	 */
 	public int getLid() {
@@ -46,6 +45,7 @@ public class Level implements Serializable {
 	}
 
 	/**
+	 * Set level ID.
 	 * @param lid the lid to set
 	 */
 	public void setLid(int lid) {
@@ -53,6 +53,7 @@ public class Level implements Serializable {
 	}
 
 	/**
+	 * Get level value.
 	 * @return the level
 	 */
 	public int getLevel() {
@@ -60,6 +61,7 @@ public class Level implements Serializable {
 	}
 
 	/**
+	 * Set level value.
 	 * @param level the level to set
 	 */
 	public void setLevel(int level) {
@@ -67,6 +69,7 @@ public class Level implements Serializable {
 	}
 
 	/**
+	 * Get level point.
 	 * @return the point
 	 */
 	public int getPoint() {
@@ -74,19 +77,27 @@ public class Level implements Serializable {
 	}
 
 	/**
+	 * Set level point.
 	 * @param point the point to set
 	 */
 	public void setPoint(int point) {
 		this.point = point;
 	}
 
-	/*
-	 * Default Constructor
+	/**
+	 * Default Constructor.
 	 */
 	public Level(){
-		
+		this.lid = 0;
+		this.level = 0;
+		this.point = 0;
 	}
-	
+	/**
+	 * Constructor.
+	 * @param id	Level ID
+	 * @param level	Level value
+	 * @param point	Point of level
+	 */
 	public Level(int id, int level, int point){
 		this.lid = id;
 		this.level = level;
@@ -101,8 +112,10 @@ public class Level implements Serializable {
 			return false;
 		}
 		final Level level = (Level)o;
-		if(this.level != level.level || this.point != level.point)
+		if ((this.level != level.level)
+				|| (this.point != level.point)) {
 			return false;
+		}
 		return true;
 	}
 
