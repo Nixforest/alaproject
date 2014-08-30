@@ -19,7 +19,7 @@
             if(mysql_num_rows($result) > 0){
                 $result = mysql_fetch_array($result);
 		$favorited = array();
-                $favorited["FID"] = $result["FID"];
+        $favorited["FID"] = $result["FID"];
 		$favorited["USERID"] = $result["USERID"];
 		$favorited["PID"] = $result["PID"];
 		

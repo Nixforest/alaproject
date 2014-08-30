@@ -13,7 +13,7 @@
             if(mysql_num_rows($result) > 0){
                 $result = mysql_fetch_array($result);
 		$member = array();
-                $member["USERID"] = $result["USERID"];
+        $member["USERID"] = $result["USERID"];
 		$member["email"] = $result["email"];
 		$member["username"] = $result["username"];
 		$member["password"] = $result["password"];
