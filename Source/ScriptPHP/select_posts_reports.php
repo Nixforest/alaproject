@@ -18,16 +18,16 @@
             if(mysql_num_rows($result) > 0){
                 $result = mysql_fetch_array($result);
 		$postReport = array();
-                $postReport["RID"] = $result["RID"];
-		$postReport["PID"] = $result["PID"];
-		$postReport["time"] = $result["time"];
-                $postReport["ip"] = $result["ip"];
-                $postReport["reason"] = $result["reason"];
+                $postReport["RID"]      = $result["RID"];
+		$postReport["PID"]      = $result["PID"];
+		$postReport["time"]     = $result["time"];
+                $postReport["ip"]       = $result["ip"];
+                $postReport["reason"]   = $result["reason"];
 		
 		//Successful
 		$response["success"] = 1;	
-		$response["postreport"] = array();
-		array_push($response["postreport"], $postReport);
+		$response["post_reports"] = array();
+		array_push($response["post_reports"], $postReport);
 		echo json_encode($response);
             }else{
                 $response["success"] = 0;
