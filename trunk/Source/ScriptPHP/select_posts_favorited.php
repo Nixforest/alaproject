@@ -19,14 +19,14 @@
             if(mysql_num_rows($result) > 0){
                 $result = mysql_fetch_array($result);
 		$favorited = array();
-        $favorited["FID"] = $result["FID"];
+                $favorited["FID"] = $result["FID"];
 		$favorited["USERID"] = $result["USERID"];
 		$favorited["PID"] = $result["PID"];
 		
 		//Successful
 		$response["success"] = 1;	
-		$response["favorited"] = array();
-		array_push($response["favorited"], $favorited);
+		$response["post_favorited"] = array();
+		array_push($response["post_favorited"], $favorited);
 		echo json_encode($response);
             }else{
                 $response["success"] = 0;

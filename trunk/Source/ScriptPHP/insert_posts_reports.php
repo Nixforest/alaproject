@@ -6,10 +6,11 @@
  * and open the template in the editor.
  */
     $response = array();
-    if(isset($_POST['PID']) && isset($_POST['time']) && isset($_POST['ip']) && isset($_POST['reason'])){
+    if(isset($_POST['PID']) && isset($_POST['time'])
+            && isset($_POST['ip']) && isset($_POST['reason'])){
         $postId = $_POST['PID'];
-        $time = $_POST['time'];
-        $ip = $_POST['ip'];
+        $time   = $_POST['time'];
+        $ip     = $_POST['ip'];
         $reason = $_POST['reason'];
         
         // include db connect class
