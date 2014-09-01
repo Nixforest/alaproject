@@ -188,6 +188,66 @@ public enum DataAccessObject {
 		}
 		return member;
 	}
+	
+	/***
+	 * Insert new member to database
+	 * @param member: Object Member
+	 * @return 0: insert fail; 1: insert successful
+	 */
+	public int insertMember(Member member)
+	{
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		int success = 0;
+		int status = 0;
+		/* Convert boolean to integer */
+		if(member.getStatus()){
+			status = 1;
+		}
+		/* Add param */
+		lstParams.add(new BasicNameValuePair(GlobalVariable.EMAIL, member.getEmail()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.USER_NAME, member.getUserName()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.PASSWORD, member.getPassword()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.PWD, member.getPwd()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.FULLNAME, member.getFullName()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.GENDER, member.getGender()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.DESCRIPTION, member.getDescription()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.COUNTRY, member.getCountry()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.YOUR_VIEWED, String.valueOf(member.getYourViewed())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.PROFILE_VIEWS, String.valueOf(member.getProfileViews())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.YOU_VIEWED, String.valueOf(member.getYouViewed())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.ADD_TIME, member.getAddTime()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.LAST_LOGIN, member.getLastLogin()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.VERIFIED, String.valueOf(member.getVerified())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.STATUS, String.valueOf(status)));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.PROFILE_PICTURE, member.getProfilePicture()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.REMEMBER_ME_KEY, member.getRememberMeKey()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.REMEMBER_ME_TIME, member.getRememberMeTime().toString()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.IP, member.getIp()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.LIP, member.getlIp()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.WEBSITE, member.getWebsite()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.NEWS, String.valueOf(member.getNews())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.MY_LANG, member.getMyLang()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.COLOR_1, member.getColor1()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.COLOR_2, member.getColor2()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.FILTER, String.valueOf(member.getFilter())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POINTS, String.valueOf(member.getPoint())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.TWITTER_ID, String.valueOf(member.getTwiterId())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.COVER, String.valueOf(member.getCover())));
+		
+		/* Get JSON object via POST method */
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_MEMBER_INSERT,
+				GlobalVariable.POST_METHOD, lstParams);
+		
+		try {
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			success = 0;
+		}
+		/* Return result */
+		return success;
+	}
+	
 	/**
 	 * Get list of Post objects from database.
 	 * @param numberOfRow Number of record want to get.
@@ -230,6 +290,7 @@ public enum DataAccessObject {
 				}
 			}
 		}catch(JSONException e){
+			e.printStackTrace();
 			return null;
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -337,7 +398,7 @@ public enum DataAccessObject {
 		try{
 			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
 			if(success == GlobalVariable.SUCCESS_VALUE){
-				JSONArray favArray = jsonObject.getJSONArray("favorited");
+				JSONArray favArray = jsonObject.getJSONArray("post_favorited");
 				JSONObject objectFav = favArray.getJSONObject(0);
 				/**/
 				postFav.setfId(objectFav.getInt(GlobalVariable.FAVORITED_ID));
@@ -357,8 +418,37 @@ public enum DataAccessObject {
 	 * @return List of PostReport objects.
 	 */
 	public List<PostReport> getListPostReport(int numberOfRow) {
-		List<PostReport> listPostReport = null;
-		// Add code here
+		List<PostReport> listPostReport = new ArrayList<PostReport>();
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		JSONArray postReports = null;
+		int success = 0;
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_REPORT_ALL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try{
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				postReports = jsonObject.getJSONArray(GlobalVariable.POSTS_REPORTS);
+				for(int i = 0; i < postReports.length(); i++){
+					PostReport report = new PostReport();
+					/* Get JSON object at row */
+					JSONObject jsonReport = postReports.getJSONObject(i);
+					report.setpId(jsonReport.getInt(GlobalVariable.REPORT_ID));
+					report.setReason(jsonReport.getInt(GlobalVariable.POST_ID));
+					report.setTime(jsonReport.getString(GlobalVariable.REPORT_TIME));
+					report.setIp(jsonReport.getString(GlobalVariable.IP));
+					report.setReason(jsonReport.getInt(GlobalVariable.REPORT_REASON));
+					/* Add object to list */
+					listPostReport.add(report);
+					/* Check row to get */
+					if(i > numberOfRow - 1){
+						return listPostReport;
+					}
+				}
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		}
 		return listPostReport;
 	}
 	/**
