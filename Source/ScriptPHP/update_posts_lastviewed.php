@@ -6,22 +6,23 @@
  * and open the template in the editor.
  */
     $response = array();
-    if(isset($_POST['level']) && isset($_POST['point'])){
-        $level = $_POST['level'];
-        $point = $_POST['point'];
+    if(isset($_POST['PID']) && isset($_POST['last_viewed'])){
+		$pid            = $_POST['PID'];
+		$last_viewed    = $_POST['last_viewed'];
+		
         // include db connect class
         require_once __DIR__ . '/db_connect.php';
         // connecting to db
         $db = new DB_CONNECT();
  
         // mysql inserting a new row
-        $result = mysql_query("INSERT INTO level(level, point) VALUES($level, $point)");
- 
+        $result = mysql_query("UPDATE posts SET last_viewed = $last_viewed WHERE PID = $pid");
+            
         // check if row inserted or not
         if ($result) {
             // successfully inserted into database
             $response["success"] = 1;
-            $response["message"] = "Level is inserted successfully!";
+            $response["message"] = "Post is updated successfully!";
  
             // echoing JSON response
             echo json_encode($response);

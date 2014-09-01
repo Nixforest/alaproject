@@ -19,7 +19,7 @@
         $db = new DB_CONNECT();
  
         // mysql inserting a new row
-        $result = mysql_query("INSERT INTO posts_reports(PID, time, ip, reason) VALUES('$postId', '$time', '$ip', '$reason')");
+        $result = mysql_query("INSERT INTO posts_reports(PID, time, ip, reason) VALUES($postId, '$time', '$ip', $reason)");
  
         // check if row inserted or not
         if ($result) {

@@ -15,7 +15,7 @@
         $db = new DB_CONNECT();
  
         // mysql inserting a new row
-        $result = mysql_query("INSERT INTO posts_unfavorited(USERID, PID) VALUES('$userId', '$postId')");
+        $result = mysql_query("INSERT INTO posts_unfavorited(USERID, PID) VALUES($userId, $postId)");
  
         // check if row inserted or not
         if ($result) {
