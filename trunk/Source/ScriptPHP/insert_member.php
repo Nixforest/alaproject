@@ -61,9 +61,9 @@
                 . "verified, status, profilepicture, remember_me_key, remember_me_time, ip, lip, website,"
                 . "news, mylang, color1, color2, filter, points, twitter_id, cover) VALUES("
                 . "'$email', '$username', '$password', '$pwd', '$fullname', '$gender', '$description',"
-                . "'$country', '$yourviewed', '$profileviews', '$youviewed', '$addtime', '$lastlogin', '$verified',"
+                . "'$country', $yourviewed, $profileviews, $youviewed, '$addtime', '$lastlogin', '$verified',"
                 . "'$status', '$profilepicture', '$remember_me_key', '$remember_me_time', '$ip', '$lip', '$website'"
-                . "'$news', '$mylang', '$color1', '$color2', '$filter', '$points', '$twitter_id', '$cover')");
+                . "$news, '$mylang', '$color1', '$color2', $filter, $points, $twitter_id, '$cover')");
  
         // check if row inserted or not
         if ($result) {

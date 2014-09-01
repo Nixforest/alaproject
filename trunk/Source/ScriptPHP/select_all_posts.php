@@ -12,7 +12,7 @@
     $db = new DB_CONNECT();
  
     // mysql select all
-    $result = mysql_query("SELECT * FROM posts");
+    $result = mysql_query("SELECT * FROM posts ORDER BY DESC");
  
     // check for empty result
     if (mysql_num_rows($result) > 0) {

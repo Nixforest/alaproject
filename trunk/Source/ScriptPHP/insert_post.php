@@ -60,10 +60,10 @@
                 . "pic, youtube_key, fod_key, url, time_added, date_added, active, phase,"
                 . "favclicks, last_viewed, mod_yes, mod_no, pip, pip2, unfavclicks, fix,"
                 . "short, ttime, htime, feat, rec, view, bulk, post_content) VALUES("
-                . "'$userId', '$story', '$tags', '$source', '$nsfw', '$pic', '$youtubeKey',"
-                . "'$fod_key', '$url', '$time', '$date', '$active', '$phase', '$favorited',"
-                . "'$lastview', '$mod_yes', '$mod_no', '$pip', '$pip2', '$unfavorited', '$fix'"
-                . "'$short', '$ttime', '$htime', '$feat', '$rec', '$view', '$bulk', '$post_content')");
+                . "$userId, '$story', '$tags', '$source', $nsfw, '$pic', '$youtubeKey',"
+                . "'$fod_key', '$url', '$time', '$date', '$active', $phase, $favorited,"
+                . "'$lastview', $mod_yes, $mod_no, '$pip', '$pip2', $unfavorited, $fix, "
+                . "'$short', '$ttime', '$htime', $feat, $rec, $view, '$bulk', '$post_content')");
  
         // check if row inserted or not
         if ($result) {
