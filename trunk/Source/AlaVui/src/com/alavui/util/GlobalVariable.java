@@ -223,8 +223,12 @@ public final class GlobalVariable {
 	 public static final String TABLE_POST_FAVORITED		= "posts_favorited";
 	 public static final String FAVORITED_ID				= "FID";
 	 
+	 /* Table Post Report and field */
 	 public static final String POSTS_REPORTS				= "posts_reports";
 	 public static final String REPORT_ID					= "RID";
 	 public static final String REPORT_TIME					= "time";
 	 public static final String REPORT_REASON				= "reason";
+	 
+	 /* Table Post unfavorite */
+	 public static final String POST_UNFAVORITED			= "posts_unfavorited";
 }
