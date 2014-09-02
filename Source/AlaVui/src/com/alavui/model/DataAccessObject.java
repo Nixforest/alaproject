@@ -27,6 +27,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.JsonReader;
+
 import com.alavui.util.GlobalVariable;
 import com.alavui.util.Utility;
 
@@ -145,7 +147,7 @@ public enum DataAccessObject {
 					member.setFullName(jsonMember.getString(GlobalVariable.FULLNAME));
 					listMember.add(member);
 					/* Check number row */
-					if (i > (numberOfRow - 1)) {
+					if (i == (numberOfRow - 1)) {
 						return listMember;
 					}
 				}
@@ -284,7 +286,7 @@ public enum DataAccessObject {
 					/* Set to list */
 					listPost.add(post);
 					/* Check row number */
-					if( i > numberOfRow - 1){
+					if( i == numberOfRow - 1){
 						return listPost;
 					}
 				}
@@ -370,7 +372,7 @@ public enum DataAccessObject {
 					/* Set object to list */
 					listPostFav.add(favorited);
 					/* Check number records */
-					if(i > numberOfRow - 1){
+					if(i == numberOfRow - 1){
 						return listPostFav;
 					}
 				}
@@ -400,7 +402,7 @@ public enum DataAccessObject {
 			if(success == GlobalVariable.SUCCESS_VALUE){
 				JSONArray favArray = jsonObject.getJSONArray("post_favorited");
 				JSONObject objectFav = favArray.getJSONObject(0);
-				/**/
+				/* Get and set value */
 				postFav.setfId(objectFav.getInt(GlobalVariable.FAVORITED_ID));
 				postFav.setUserId(objectFav.getInt(GlobalVariable.USER_ID));
 				postFav.setpId(objectFav.getInt(GlobalVariable.POST_ID));
@@ -432,15 +434,15 @@ public enum DataAccessObject {
 					PostReport report = new PostReport();
 					/* Get JSON object at row */
 					JSONObject jsonReport = postReports.getJSONObject(i);
-					report.setpId(jsonReport.getInt(GlobalVariable.REPORT_ID));
-					report.setReason(jsonReport.getInt(GlobalVariable.POST_ID));
+					report.setrId(jsonReport.getInt(GlobalVariable.REPORT_ID));
+					report.setpId(jsonReport.getInt(GlobalVariable.POST_ID));
 					report.setTime(jsonReport.getString(GlobalVariable.REPORT_TIME));
 					report.setIp(jsonReport.getString(GlobalVariable.IP));
 					report.setReason(jsonReport.getInt(GlobalVariable.REPORT_REASON));
 					/* Add object to list */
 					listPostReport.add(report);
 					/* Check row to get */
-					if(i > numberOfRow - 1){
+					if(i == numberOfRow - 1){
 						return listPostReport;
 					}
 				}
@@ -457,8 +459,32 @@ public enum DataAccessObject {
 	 * @return If id is valid, return PostReport object with match id, null otherwise.
 	 */
 	public PostReport getPostReportByID(int id) {
-		PostReport postReport = null;
-		// Add code here
+		PostReport postReport = new PostReport();
+		int success = 0;
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		/* Set value to param */
+		lstParams.add(new BasicNameValuePair(GlobalVariable.REPORT_ID, String.valueOf(id)));
+		/* Get JSON object from URL via GET method */
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_FAVORITED_DETAIL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try{
+			/* Get result */
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			/* If result is success */
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				JSONArray reportArray = jsonObject.getJSONArray("post_reports");
+				/* Get the first object in array */
+				JSONObject objectReport = reportArray.getJSONObject(0);
+				/* Get and set value to object Report */
+				postReport.setrId(objectReport.getInt(GlobalVariable.REPORT_ID));
+				postReport.setpId(objectReport.getInt(GlobalVariable.POST_ID));
+				postReport.setTime(objectReport.getString(GlobalVariable.REPORT_TIME));
+				postReport.setReason(objectReport.getInt(GlobalVariable.REPORT_REASON));
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		}
 		return postReport;
 	}
 	/**
@@ -467,8 +493,33 @@ public enum DataAccessObject {
 	 * @return List of PostUnFavorited objects.
 	 */
 	public List<PostUnFavorited> getListPostUnFavorited(int numberOfRow) {
-		List<PostUnFavorited> listPostUnFav = null;
-		// Add code here
+		List<PostUnFavorited> listPostUnFav = new ArrayList<PostUnFavorited>();
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		JSONArray unfavorites = null;
+		int success = 0;
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_UNFAVORITED_ALL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try {
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				unfavorites = jsonObject.getJSONArray(GlobalVariable.POST_UNFAVORITED);
+				for(int i = 0; i < unfavorites.length(); i++){
+					PostUnFavorited unfavorite = new PostUnFavorited();
+					JSONObject objectUnfavorite = unfavorites.getJSONObject(i);
+					unfavorite.setfId(objectUnfavorite.getInt(GlobalVariable.FAVORITED_ID));
+					unfavorite.setUserId(objectUnfavorite.getInt(GlobalVariable.USER_ID));
+					unfavorite.setpId(objectUnfavorite.getInt(GlobalVariable.POST_ID));
+					listPostUnFav.add(unfavorite);
+					if(i == numberOfRow - 1){
+						return listPostUnFav;
+					}
+				}
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return listPostUnFav;
+		}
+		
 		return listPostUnFav;
 	}
 	/**
@@ -477,8 +528,26 @@ public enum DataAccessObject {
 	 * @return If id is valid, return PostUnFavorited object with match id, null otherwise.
 	 */
 	public PostUnFavorited getPostUnFavoritedByID(int id) {
-		PostUnFavorited postUnFav = null;
-		// Add code here
+		PostUnFavorited postUnFav = new PostUnFavorited();
+		int success = 0;
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		lstParams.add(new BasicNameValuePair(GlobalVariable.FAVORITED_ID, String.valueOf(id)));
+		
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_UNFAVORITE_DETAIL,
+				GlobalVariable.GET_METHOD, lstParams);
+		try{
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+			if(success == GlobalVariable.SUCCESS_VALUE){
+				JSONArray unfavorites = jsonObject.getJSONArray("post_unfavorited");
+				JSONObject unfavorite = unfavorites.getJSONObject(0);
+				postUnFav.setfId(unfavorite.getInt(GlobalVariable.FAVORITED_ID));
+				postUnFav.setUserId(unfavorite.getInt(GlobalVariable.USER_ID));
+				postUnFav.setpId(unfavorite.getInt(GlobalVariable.POST_ID));
+			}
+		}catch(JSONException e){
+			e.printStackTrace();
+			return null;
+		}
 		return postUnFav;
 	}
 	/**
