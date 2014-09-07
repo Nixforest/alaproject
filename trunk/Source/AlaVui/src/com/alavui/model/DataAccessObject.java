@@ -344,6 +344,55 @@ public enum DataAccessObject {
 		}
 		return post;
 	}
+	
+	/**
+	 * Insert post
+	 * @param post: Object post
+	 * @return 0: fail, 1: success
+	 */
+	public int insertPost(Post post){
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		int success = 0;
+		
+		lstParams.add(new BasicNameValuePair(GlobalVariable.USER_ID, String.valueOf(post.getUserId())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_STORY, post.getStory()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_TAGS, post.getTag()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_SOURCE, post.getSource()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_NSFW, String.valueOf(post.getNsfw())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_PIC, post.getPic()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_YOUTUBE_KEY, post.getYouTubeKey()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_FOD_KEY, post.getFodKey()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_URL, post.getUrl()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_TIME_ADDED, post.getTimeAdded()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_DATE_ADDED, post.getDateAdded().toString()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_ACTIVE, String.valueOf(post.getActive())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_PHASE, String.valueOf(post.getPhase())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_FAVORITE_CLICKS, String.valueOf(post.getFavClicks())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_LAST_VIEWED, post.getLastViewed()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_MOD_YES, String.valueOf(post.getModYes())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_MOD_NO, String.valueOf(post.getModNo())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_PIP, post.getPip()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_PIP2, post.getPip2()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_UNFAVORITE_CLICKS, String.valueOf(post.getunfavClicks())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_FIX, String.valueOf(post.getFix())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_SHORT, post.getShortDes()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_TTIME, post.gettTime()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_HTIME, post.gethTime()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_FEAT, String.valueOf(post.getFeat())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_REC, String.valueOf(post.getRec())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_VIEW, String.valueOf(post.getView())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_CONTENT, String.valueOf(post.getPostContent())));
+		
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_INSERT_POST,
+				GlobalVariable.POST_METHOD, lstParams);
+		try {
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return success;
+	}
 	/**
 	 * Get list of PostFavorited objects from database.
 	 * @param numberOfRow Number of record want to get.
@@ -414,6 +463,28 @@ public enum DataAccessObject {
 		
 		return postFav;
 	}
+	
+	/**
+	 * Insert Post favorited
+	 * @param postFav: Object Post favorited
+	 * @return 0: fail, 1: success
+	 */
+	public int insertPostFavorited(PostFavorited postFav){
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		int success = 0;
+		lstParams.add(new BasicNameValuePair(GlobalVariable.USER_ID, String.valueOf(postFav.getUserId())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_ID, String.valueOf(postFav.getpId())));
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_FAVORITED_INSERT,
+				GlobalVariable.POST_METHOD, lstParams);
+		try {
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			success = 0;
+		}
+		return success;
+	}
+	
 	/**
 	 * Get list of PostReport objects from database.
 	 * @param numberOfRow Number of record want to get.
@@ -487,6 +558,30 @@ public enum DataAccessObject {
 		}
 		return postReport;
 	}
+	
+	/**
+	 * Insert post report
+	 * @param postReport: Object post report
+	 * @return 0: fail, 1: success
+	 */
+	public int insertPostReport(PostReport postReport){
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		int success = 0;
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_ID, String.valueOf(postReport.getpId())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.REPORT_TIME, postReport.getTime()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.REPORT_IP, postReport.getIp()));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.REPORT_REASON, String.valueOf(postReport.getReason())));
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_REPORT_INSERT,
+				GlobalVariable.POST_METHOD, lstParams);
+		try {
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			success = 0;
+		}
+		return success;
+	}
+	
 	/**
 	 * Get list of PostUnFavorited objects from database.
 	 * @param numberOfRow Number of record want to get.
@@ -533,7 +628,7 @@ public enum DataAccessObject {
 		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
 		lstParams.add(new BasicNameValuePair(GlobalVariable.FAVORITED_ID, String.valueOf(id)));
 		
-		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_UNFAVORITE_DETAIL,
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_UNFAVORITED_DETAIL,
 				GlobalVariable.GET_METHOD, lstParams);
 		try{
 			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
@@ -549,6 +644,27 @@ public enum DataAccessObject {
 			return null;
 		}
 		return postUnFav;
+	}
+	
+	/**
+	 * Insert Post Unfavorited
+	 * @param postUnFav: Object Post Unfavorited
+	 * @return 0: fail, 1: success
+	 */
+	public int insertPostUnfavorited(PostUnFavorited postUnFav){
+		List<NameValuePair> lstParams = new ArrayList<NameValuePair>();
+		int success = 0;
+		lstParams.add(new BasicNameValuePair(GlobalVariable.USER_ID, String.valueOf(postUnFav.getUserId())));
+		lstParams.add(new BasicNameValuePair(GlobalVariable.POST_ID, String.valueOf(postUnFav.getpId())));
+		JSONObject jsonObject = Utility.makeHttpRequest(GlobalVariable.URL_POST_UNFAVORITED_INSERT,
+				GlobalVariable.POST_METHOD, lstParams);
+		try {
+			success = jsonObject.getInt(GlobalVariable.SUCCESS_STRING);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			success = 0;
+		}
+		return success;
 	}
 	/**
 	 * Get list of Referral objects from database.
