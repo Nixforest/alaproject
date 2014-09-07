@@ -139,6 +139,10 @@ public final class GlobalVariable {
 	  * String link get post by Id.
 	  */
 	 public static final String URL_POST_DETAIL				= "";
+	 /*
+	  * String link insert post
+	  */
+	 public static final String URL_INSERT_POST				= "";
 	 /**
 	  * String link get post favorited all.
 	  */
@@ -147,6 +151,10 @@ public final class GlobalVariable {
 	  * String link get post favorited by Id.
 	  */
 	 public static final String URL_POST_FAVORITED_DETAIL	= "";
+	 /*
+	  * String link insert post favorited
+	  */
+	 public static final String URL_POST_FAVORITED_INSERT	= "";
 	 /**
 	  * String link get post report all.
 	  */
@@ -155,6 +163,10 @@ public final class GlobalVariable {
 	  * String link get post report detail by Id.
 	  */
 	 public static final String URL_POST_REPORT_DETAIL		= "";
+	 /*
+	  * String link insert post report
+	  */
+	 public static final String URL_POST_REPORT_INSERT		= "";
 	 /**
 	  * String link get post unfavorited all.
 	  */
@@ -162,7 +174,15 @@ public final class GlobalVariable {
 	 /**
 	  * String link get post unfavorited by Id.
 	  */
-	 public static final String URL_POST_UNFAVORITE_DETAIL	= "";
+	 public static final String URL_POST_UNFAVORITED_DETAIL	= "";
+	 /**
+	  * String link insert post unfavorited
+	  */
+	 public static final String URL_POST_UNFAVORITED_INSERT	= "";
+	 /**
+	  * String link Referral
+	  */
+	 public static final String URL_REFERRAL = "";
 	 /**
 	  * String date format.
 	  */
@@ -208,15 +228,33 @@ public final class GlobalVariable {
 	 public static final String TABLE_POSTS					= "posts";
 	 public static final String POST_ID						= "PID";
 	 public static final String POST_STORY					= "story";
+	 public static final String POST_TAGS					= "tags";
+	 public static final String POST_SOURCE					= "source";
+	 public static final String POST_NSFW					= "nsfw";
 	 public static final String POST_PIC					= "pic";
 	 public static final String POST_YOUTUBE_KEY			= "youtube_key";
+	 public static final String POST_FOD_KEY				= "fod_key";
 	 public static final String POST_URL					= "url";
 	 public static final String POST_TIME_ADDED				= "time_added";
 	 public static final String POST_DATE_ADDED				= "date_added";
+	 public static final String POST_ACTIVE					= "active";
+	 public static final String POST_PHASE					= "phase";
 	 public static final String POST_FAVORITE_CLICKS		= "favclicks";
+	 public static final String POST_LAST_VIEWED			= "last_viewed";
+	 public static final String POST_MOD_YES				= "mod_yes";
+	 public static final String POST_MOD_NO					= "mod_no";
+	 public static final String POST_PIP					= "pip";
+	 public static final String POST_PIP2					= "pip2";
 	 public static final String POST_UNFAVORITE_CLICKS		= "unfavclicks";
+	 public static final String POST_FIX					= "fix";
+	 public static final String POST_SHORT					= "short";
+	 public static final String POST_TTIME					= "ttime";
+	 public static final String POST_HTIME					= "htime";
+	 public static final String POST_FEAT					= "feat";
+	 public static final String POST_REC					= "rec";
 	 public static final String POST_VIEW					= "view";
-	 
+	 public static final String POST_BULK					= "bulk";
+	 public static final String POST_CONTENT				= "post_content";
 	 /**
 	  * Table Post Favorited and fields.
 	  */
@@ -228,6 +266,7 @@ public final class GlobalVariable {
 	 public static final String REPORT_ID					= "RID";
 	 public static final String REPORT_TIME					= "time";
 	 public static final String REPORT_REASON				= "reason";
+	 public static final String REPORT_IP					= "ip";
 	 
 	 /* Table Post unfavorite */
 	 public static final String POST_UNFAVORITED			= "posts_unfavorited";
