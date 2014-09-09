@@ -7,5 +7,5 @@
 define('DB_USER', "admin_sontd");
 define('DB_PASSWORD', "u0uGiPGhqZ6");
 define('DB_DATABASE', "admin_sontd");
-define("DB_SERVER", "mysql.hostinger.vn");
+define('DB_SERVER', "mysql.hostinger.vn");
 ?>
