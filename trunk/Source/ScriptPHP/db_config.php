@@ -4,8 +4,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define('DB_USER', "admin_sontd");
-define('DB_PASSWORD', "u0uGiPGhqZ6");
-define('DB_DATABASE', "admin_sontd");
-define('DB_SERVER', "mysql.hostinger.vn");
+define('DB_USER', "admin_ala");
+define('DB_PASSWORD', "igw9C5Df");
+define('DB_DATABASE', "admin_ala");
+define('DB_SERVER', "112.213.84.164");
 ?>
