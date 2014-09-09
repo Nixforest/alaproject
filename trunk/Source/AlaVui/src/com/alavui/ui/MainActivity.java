@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 /**
@@ -124,6 +125,8 @@ public class MainActivity extends ActionBarActivity {
 		 * Set event of drawer toggle to drawer layout
 		 */
 		drawerLayout.setDrawerListener(drawerToggle);
+		
+		
 	}
 
 	/**
@@ -204,6 +207,12 @@ public class MainActivity extends ActionBarActivity {
 		case 5: {
 			Intent intent = new Intent(com.alavui.ui.MainActivity.this,
 					com.alavui.ui.PostImageActivity.class);
+			com.alavui.ui.MainActivity.this.startActivity(intent);
+			break;
+		}
+		case 7: {
+			Intent intent = new Intent(com.alavui.ui.MainActivity.this,
+					com.alavui.ui.VideoViewActivity.class);
 			com.alavui.ui.MainActivity.this.startActivity(intent);
 			break;
 		}
