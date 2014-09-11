@@ -22,11 +22,11 @@
         while ($row = mysql_fetch_array($result)) {
             // temp user array
             $postReports = array();
-            $postReports["RID"]      = $result["RID"];
-            $postReports["PID"]      = $result["PID"];
-            $postReports["time"]     = $result["time"];
-            $postReports["ip"]       = $result["ip"];
-            $postReports["reason"]   = $result["reason"];
+            $postReports["RID"]      = $row["RID"];
+            $postReports["PID"]      = $row["PID"];
+            $postReports["time"]     = $row["time"];
+            $postReports["ip"]       = $row["ip"];
+            $postReports["reason"]   = $row["reason"];
             // push single product into final response array
             array_push($response["posts_reports"], $postReports);
         }

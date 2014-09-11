@@ -22,8 +22,8 @@
         while ($row = mysql_fetch_array($result)) {
             // temp user array
             $configs = array();
-            $configs["setting"] = $result["setting"];
-            $configs["value"]   = $result["value"];
+            $configs["setting"] = $row["setting"];
+            $configs["value"]   = $row["value"];
             
             // push single product into final response array
             array_push($response["configs"], $configs);
