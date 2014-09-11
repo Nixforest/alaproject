@@ -10,61 +10,68 @@
     require_once __DIR__ . '/db_connect.php';
     // connecting to db
     $db = new DB_CONNECT();
+    if(isset($_GET['page_number']) && isset($_GET['page_record'])){
+        $page_number = $_GET['page_number'];
+        $page_record = $_GET['page_record'];
+        // mysql select all
+        $result = mysql_query("SELECT * FROM posts LIMIT $page_number * $page_record, $page_record");
  
-    // mysql select all
-    $result = mysql_query("SELECT * FROM posts ORDER BY DESC");
- 
-    // check for empty result
-    if (mysql_num_rows($result) > 0) {
-        // Post node
-        $response["posts"] = array();
+        // check for empty result
+        if (mysql_num_rows($result) > 0) {
+            // Post node
+            $response["posts"] = array();
 
-        while ($row = mysql_fetch_array($result)) {
-            // temp user array
-            $post = array();
-            $post["PID"]            = $result["PID"];
-            $post["USERID"]         = $_POST["USERID"];
-            $post["story"]          = $_POST["story"];
-            $post["tags"]           = $_POST["tags"];
-            $post["source"]         = $_POST["source"];
-            $post["nsfw"]           = $_POST["nsfw"];
-            $post["pic"]            = $_POST["pic"];
-            $post["youtube_key"]    = $_POST["youtube_key"];
-            $post["fod_key"]        = $_POST["fod_key"];
-            $post["url"]            = $_POST["url"];
-            $post["time_added"]     = $_POST["time_added"];
-            $post["date_added"]     = $_POST["date_added"];
-            $post["active"]         = $_POST["active"];
-            $post["phase"]          = $_POST["phase"];
-            $post["favclicks"]      = $_POST["favclicks"];
-            $post["last_viewed"]    = $_POST["last_viewed"];
-            $post["mod_yes"]        = $_POST["mod_yes"];
-            $post["mod_no"]         = $_POST["mod_no"];
-            $post["pip"]            = $_POST["pip"];
-            $post["pip2"]           = $_POST["pip2"];
-            $post["unfavclicks"]    = $_POST["unfavclicks"];
-            $post["fix"]            = $_POST["fix"];
-            $post["short"]          = $_POST["short"];
-            $post["ttime"]          = $_POST["ttime"];
-            $post["htime"]          = $_POST["htime"];
-            $post["feat"]           = $_POST["feat"];
-            $post["rec"]            = $_POST["rec"];
-            $post["view"]           = $_POST["view"];
-            $post["bulk"]           = $_POST["bulk"];
-            $post["post_content"]   = $_POST["post_content"];
-            
-            // push single product into final response array
-            array_push($response["posts"], $post);
+            while ($row = mysql_fetch_array($result)) {
+                // temp user array
+                $post = array();
+                $post["PID"]            = $row["PID"];
+                $post["USERID"]         = $row["USERID"];
+                $post["story"]          = $row["story"];
+                $post["tags"]           = $row["tags"];
+                $post["source"]         = $row["source"];
+                $post["nsfw"]           = $row["nsfw"];
+                $post["pic"]            = $row["pic"];
+                $post["youtube_key"]    = $row["youtube_key"];
+                $post["fod_key"]        = $row["fod_key"];
+                $post["url"]            = $row["url"];
+                $post["time_added"]     = $row["time_added"];
+                $post["date_added"]     = $row["date_added"];
+                $post["active"]         = $row["active"];
+                $post["phase"]          = $row["phase"];
+                $post["favclicks"]      = $row["favclicks"];
+                $post["last_viewed"]    = $row["last_viewed"];
+                $post["mod_yes"]        = $row["mod_yes"];
+                $post["mod_no"]         = $row["mod_no"];
+                $post["pip"]            = $row["pip"];
+                $post["pip2"]           = $row["pip2"];
+                $post["unfavclicks"]    = $row["unfavclicks"];
+                $post["fix"]            = $row["fix"];
+                $post["short"]          = $row["short"];
+                $post["ttime"]          = $row["ttime"];
+                $post["htime"]          = $row["htime"];
+                $post["feat"]           = $row["feat"];
+                $post["rec"]            = $row["rec"];
+                $post["view"]           = $row["view"];
+                $post["bulk"]           = $row["bulk"];
+                $post["post_content"]   = $row["post_content"];
+
+                // push single product into final response array
+                array_push($response["posts"], $post);
+            }
+            // success
+            $response["success"] = 1;
+            // echo JSON response
+            echo json_encode($response);
+        } else {
+            // no users found
+            $response["success"] = 0;
+            $response["message"] = "No records";
+            // echo no users JSON
+            echo json_encode($response);
         }
-        // success
-        $response["success"] = 1;
-        // echo JSON response
-        echo json_encode($response);
-    } else {
-        // no users found
+    }else{
 	$response["success"] = 0;
-	$response["message"] = "No records";
-	// echo no users JSON
+	$response["message"] = "Require field is missing";
 	echo json_encode($response);
     }
 ?>

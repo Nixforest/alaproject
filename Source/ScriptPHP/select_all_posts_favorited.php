@@ -22,9 +22,9 @@
         while ($row = mysql_fetch_array($result)) {
             // temp user array
             $favorited = array();
-            $favorited["FID"]           = $result["FID"];
-            $favorited["USERID"]        = $result["USERID"];
-            $favorited["PID"]          	= $result["PID"];
+            $favorited["FID"]           = $row["FID"];
+            $favorited["USERID"]        = $row["USERID"];
+            $favorited["PID"]          	= $row["PID"];
             // push single product into final response array
             array_push($response["posts_favorited"], $favorited);
         }
