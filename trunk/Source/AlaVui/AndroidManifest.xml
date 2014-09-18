@@ -16,14 +16,21 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <!-- Splash Screen Activity -->
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:name=".SplashScreenActivity"
+            android:label="@string/app_name"
+            android:theme="@style/SplashScreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
         </activity>
 
         <meta-data
@@ -51,14 +58,16 @@
             android:label="@string/title_activity_setting" >
         </activity>
         <activity
-            android:name=".VideoViewActivity" 
-            android:label="@string/title_activity_setting">
+            android:name=".VideoViewActivity"
+            android:label="@string/title_activity_setting" >
         </activity>
         <activity
             android:name=".video"
             android:label="@string/title_activity_setting" >
         </activity>
     </application>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 </manifest>
