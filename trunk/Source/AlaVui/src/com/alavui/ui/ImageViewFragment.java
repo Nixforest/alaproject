@@ -74,7 +74,7 @@ public class ImageViewFragment extends Fragment {
 	    
 		
 		switch (type) {
-		case 0:
+		case 1:
 			ImagePagerAdapter adapter = new ImagePagerAdapter();
 		    adapter.mImages = new ArrayList<String>();
 		    adapter.mImages.add("http://anhdep.pro/wp-content/uploads/2014/07/nhung-hinh-nen-may-tinh-dep-nhat-va-da-dang-5.jpg");
@@ -88,7 +88,7 @@ public class ImageViewFragment extends Fragment {
 			 tv.setText(image_smiley.getSmiledText(getActivity().getApplicationContext(),text ));
 			 
 			break;
-		case 1:
+		case 2:
 			ImagePagerAdapter adapter1 = new ImagePagerAdapter();
 		    adapter1.mImages = new ArrayList<String>();
 		    adapter1.mImages.add("http://data.sinhvienit.net/2010/T11/img/SinhVienIT.NET---1234.gif");
@@ -98,14 +98,11 @@ public class ImageViewFragment extends Fragment {
 			 viewPager.setAdapter(adapter1);
 		      
 			break;
-		case 2:
-			break;
 		case 3:
 			break;
 		case 4:
 			break;
 		case 5:
-			
 			break;
 		default:
 			break;

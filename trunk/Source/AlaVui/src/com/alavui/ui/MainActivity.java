@@ -5,28 +5,37 @@ import java.util.List;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Main Activity
+ * 
  * @author TamNT
- *
+ * 
  */
 public class MainActivity extends ActionBarActivity {
 	/**
-	 * Handle layout of drawer 
+	 * Handle layout of drawer
 	 */
 	private DrawerLayout drawerLayout;
 	/**
@@ -43,30 +52,31 @@ public class MainActivity extends ActionBarActivity {
 	private List<DrawerItem> dataList;
 
 	/**
-	 * Drawer Toggle
+	 * ActionBar
 	 */
-	private ActionBarDrawerToggle drawerToggle;
+	private ActionBar actionBar;
+	/**
+	 * LayoutInflater handler for view
+	 */
+	private LayoutInflater layoutInflater;
+	/**
+	 * View for actionbar custom
+	 */
+	private View customView;
+	private Fragment fragmentContent;
+	
+	public enum IMAGEVIEWTYPE {
+	    NEW(1), UNREAD(2), HOT(3), OLD(4), VOTE(5);
 
-	/**
-	 * Title of action bar
-	 */
-	private CharSequence titleActionbar;
-	/**
-	 * ID of icon action bar
-	 */
-	private int iconActionbarID;
-
-	/**
-	 * @Enum style of Action bar
-	 */
-	public enum ACTIONBAR_STYLE {
-		FULL_ITEM, NO_ITEM, TYPE_1
+	    private final int value;
+	    private IMAGEVIEWTYPE(int value) {
+	        this.value = value;
+	    }
+	    
+	    public int getValue() {
+	        return value;
+	    }
 	}
-	/**
-	 * Style of action bar
-	 */
-	private ACTIONBAR_STYLE actionbarStyle;
-
 	/**
 	 * Create Activity
 	 */
@@ -78,11 +88,8 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		actionbarStyle = ACTIONBAR_STYLE.FULL_ITEM;
 		dataList = new ArrayList<DrawerItem>();
-		titleActionbar = getTitle();
 		addItemsToDataList();
-
 		/**
 		 * Set shadow to Drawer
 		 */
@@ -102,37 +109,27 @@ public class MainActivity extends ActionBarActivity {
 		 * Add click event to item
 		 */
 		drawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-		/**
-		 * Create drawer toggle and click event
-		 */
-		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
-				R.drawable.ic_drawer, R.string.drawer_open,
-				R.string.drawer_close) {
-			public void onDrawerClosed(View view) {
-				supportInvalidateOptionsMenu();
-			}
-
-			public void onDrawerOpened(View drawerView) {
-				supportInvalidateOptionsMenu();
-			}
-		};
-
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeButtonEnabled(true);
-
-		/**
-		 * Set event of drawer toggle to drawer layout
-		 */
-		drawerLayout.setDrawerListener(drawerToggle);
+		drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 		
+		createActionBarWithIcon();
 		
+		fragmentContent = new ImageViewFragment(IMAGEVIEWTYPE.NEW.getValue());
+		if (fragmentContent!= null) {
+			loadFragmentContent(fragmentContent);
+		}
+	}
+	
+	private void loadFragmentContent(Fragment fragment) {
+		FragmentManager frgManager = getSupportFragmentManager();
+		frgManager.beginTransaction()
+				.replace(R.id.content_layout, fragment).commit();
 	}
 
 	/**
 	 * Add items to drawer
 	 */
 	private void addItemsToDataList() {
+		dataList.add(new DrawerItem("MAIN MENU", R.drawable.main_menu));
 		dataList.add(new DrawerItem(getResources().getString(
 				R.string.drawer_new), R.drawable.ic_drawer_new));
 		dataList.add(new DrawerItem(getResources().getString(
@@ -160,76 +157,144 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	/**
-	 * Create Action bar
+	 * Create Action bar with icon
 	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.action_bar, menu);
-		return true;
+	private void createActionBarWithIcon() {
+		actionBar = getSupportActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(false);
+		layoutInflater = LayoutInflater.from(this);
+		customView = layoutInflater.inflate(R.layout.actionbar_with_icon, null);
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color
+				.parseColor("#edeeef")));
+		actionBar.setCustomView(customView);
+		actionBar.setDisplayShowCustomEnabled(true);
+
+		ImageButton mainMenuButton = (ImageButton) customView
+				.findViewById(R.id.main_menu);
+		mainMenuButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (drawerLayout.isDrawerOpen(drawerList)) {
+					drawerLayout.closeDrawer(drawerList);
+				} else {
+					drawerLayout.openDrawer(drawerList);
+				}
+			}
+		});
+
+		ImageButton refreshButton = (ImageButton) customView
+				.findViewById(R.id.refresh);
+		refreshButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// refresh code
+				drawerLayout.openDrawer(drawerList);
+			}
+		});
+
+	}
+
+	private void createActionBarWithTitle(String titleText) {
+		actionBar = getSupportActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(false);
+		layoutInflater = LayoutInflater.from(this);
+		customView = layoutInflater.inflate(R.layout.actionbar_with_title, null);
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color
+				.parseColor("#edeeef")));
+		TextView title = (TextView) customView.findViewById(R.id.title);
+		title.setText(titleText);
+		actionBar.setCustomView(customView);
+		actionBar.setDisplayShowCustomEnabled(true);
+
+		ImageButton mainMenuButton = (ImageButton) customView
+				.findViewById(R.id.main_menu);
+		mainMenuButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (drawerLayout.isDrawerOpen(drawerList)) {
+					drawerLayout.closeDrawer(drawerList);
+				} else {
+					drawerLayout.openDrawer(drawerList);
+				}
+			}
+		});
+
+		ImageButton refreshButton = (ImageButton) customView
+				.findViewById(R.id.refresh);
+		refreshButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// refresh code
+				drawerLayout.openDrawer(drawerList);
+			}
+		});
+
 	}
 
 	/**
 	 * Action for click item in drawer
-	 * @param position Position of item in drawer
+	 * 
+	 * @param position
+	 *            Position of item in drawer
 	 */
 	public void SelectItem(int position) {
-		Fragment fragment = null;
-		
 		/**
 		 * Create a fragment for view
 		 */
 		switch (position) {
-		case 0: {
-			fragment = new ImageViewFragment(0);
-			actionbarStyle = ACTIONBAR_STYLE.FULL_ITEM;
-			break;
-		}
 		case 1: {
-			fragment = new ImageViewFragment(1);
-			actionbarStyle = ACTIONBAR_STYLE.FULL_ITEM;
+			fragmentContent = new ImageViewFragment(IMAGEVIEWTYPE.NEW.getValue());
+			createActionBarWithIcon();
 			break;
 		}
 		case 2: {
-			fragment = new ImageViewFragment(2);
-			actionbarStyle = ACTIONBAR_STYLE.FULL_ITEM;
+			fragmentContent = new ImageViewFragment(IMAGEVIEWTYPE.UNREAD.getValue());
+			createActionBarWithTitle(getResources().getString(R.string.drawer_unread));
 			break;
 		}
 		case 3: {
-			fragment = new ImageViewFragment(3);
-			actionbarStyle = ACTIONBAR_STYLE.FULL_ITEM;
+			fragmentContent = new ImageViewFragment(IMAGEVIEWTYPE.HOT.getValue());
+			createActionBarWithTitle(getResources().getString(R.string.drawer_hot));
 			break;
 		}
 		case 4: {
-			fragment = new ImageViewFragment(4);
-			actionbarStyle = ACTIONBAR_STYLE.FULL_ITEM;
+			fragmentContent = new ImageViewFragment(IMAGEVIEWTYPE.OLD.getValue());
+			createActionBarWithTitle(getResources().getString(R.string.drawer_old));
 			break;
 		}
 		case 5: {
+			fragmentContent = new ImageViewFragment(IMAGEVIEWTYPE.VOTE.getValue());
+			createActionBarWithTitle(getResources().getString(R.string.drawer_vote));
+			break;
+		}
+		case 6: {
 			Intent intent = new Intent(com.alavui.ui.MainActivity.this,
 					com.alavui.ui.PostImageActivity.class);
 			com.alavui.ui.MainActivity.this.startActivity(intent);
 			break;
 		}
-		case 7: {
+		case 8: {
 			Intent intent = new Intent(com.alavui.ui.MainActivity.this,
 					com.alavui.ui.VideoViewActivity.class);
 			com.alavui.ui.MainActivity.this.startActivity(intent);
 			break;
 		}
 
-		case 9: {
+		case 10: {
 			Intent intent = new Intent(com.alavui.ui.MainActivity.this,
 					com.alavui.ui.LoginActivity.class);
 			com.alavui.ui.MainActivity.this.startActivity(intent);
 			break;
 		}
-		case 10: {
+		case 11: {
 			Intent intent = new Intent(com.alavui.ui.MainActivity.this,
 					com.alavui.ui.SettingActivity.class);
 			com.alavui.ui.MainActivity.this.startActivity(intent);
 			break;
 		}
-		case 11: {
+		case 12: {
 			Intent intent = new Intent(com.alavui.ui.MainActivity.this,
 					com.alavui.ui.ApplicationsActivity.class);
 			com.alavui.ui.MainActivity.this.startActivity(intent);
@@ -240,80 +305,27 @@ public class MainActivity extends ActionBarActivity {
 		}
 		}
 
-		if (fragment != null) {
+		if (fragmentContent != null) {
 			/**
 			 * Apply fragment to content layout
 			 */
-			FragmentManager frgManager = getSupportFragmentManager();
-			frgManager.beginTransaction()
-					.replace(R.id.content_layout, fragment).commit();
+			loadFragmentContent(fragmentContent);
 			/**
 			 * Action for click drawer item: Highlight item checked, set title,
 			 * set icon, refresh action bar, close drawer
 			 */
 			drawerList.setItemChecked(position, true);
-			setTitleActionbar(dataList.get(position).getItemName());
-			setIconActionbar(dataList.get(position).getImgResID());
-			supportInvalidateOptionsMenu();
 			drawerLayout.closeDrawer(drawerList);
 		} else {
 			drawerList.setItemChecked(position, true);
 		}
 
 	}
-
-	/**
-	 * Set title action bar
-	 * @param title String title to set
-	 */
-	public void setTitleActionbar(CharSequence title) {
-		this.titleActionbar = title;
-		getSupportActionBar().setTitle(title);
-	}
-
-	/**
-	 * Set icon action bar
-	 * @param imgResID id of image
-	 */
-	public void setIconActionbar(int imgResID) {
-		this.iconActionbarID = imgResID;
-		getSupportActionBar().setIcon(iconActionbarID);
-	}
-
-	/**
-	 * Sync the toggle state after onRestoreInstanceState has occurred
-	 */
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-		drawerToggle.syncState();
-	}
-
-	/**
-	 * Pass any configuration change to the drawer toggles
-	 */
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		drawerToggle.onConfigurationChanged(newConfig);
-	}
-
-	/**
-	 * The action bar home/up action should open or close the drawer.
-	 * ActionBarDrawerToggle will take care of this.
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (drawerToggle.onOptionsItemSelected(item)) {
-			return true;
-		}
-		return false;
-	}
-
 	/**
 	 * Class handle for click item in drawer
+	 * 
 	 * @author TamNT
-	 *
+	 * 
 	 */
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
@@ -321,33 +333,10 @@ public class MainActivity extends ActionBarActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			if (dataList.get(position).getHaveTopDivider() == false) {
-				SelectItem(position);
+				if (position != 0) {
+					SelectItem(position);
+				}
 			}
 		}
-	}
-
-	/**
-	 * Update action bar
-	 */
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		if (actionbarStyle == ACTIONBAR_STYLE.FULL_ITEM) {
-			boolean drawerOpen = drawerLayout.isDrawerOpen(drawerList);
-			for (int i = 0; i < menu.size(); i++) {
-				menu.getItem(i).setVisible(!drawerOpen);
-			}
-			getSupportActionBar().setHomeButtonEnabled(true);
-			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		} else if (actionbarStyle == ACTIONBAR_STYLE.NO_ITEM) {
-			for (int i = 0; i < menu.size(); i++) {
-				menu.getItem(i).setVisible(false);
-			}
-			getSupportActionBar().setHomeButtonEnabled(false);
-			getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-		} else if (actionbarStyle == ACTIONBAR_STYLE.TYPE_1) {
-			menu.clear();
-			getMenuInflater().inflate(R.menu.main, menu);
-		}
-		return super.onPrepareOptionsMenu(menu);
 	}
 }
